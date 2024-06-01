@@ -1,0 +1,16 @@
+package com.example.calculator.ui.calculator
+
+data class CalculatorScreenUiState(
+    val result: String = "0",
+    val firstNumber: String = "",
+    val secondNumber: String = "",
+    val operator: CalculatorOperator? = null,
+)
+
+sealed interface CalculatorOperator {
+    data object Plus : CalculatorOperator // +
+    data object Minus : CalculatorOperator // -
+    data object Divide : CalculatorOperator // /
+    data object Multiply : CalculatorOperator // *
+    data object Equals : CalculatorOperator // =
+}

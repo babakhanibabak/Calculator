@@ -16,6 +16,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,11 +36,24 @@ import com.example.calculator.ui.theme.resultBackgroundColor
 fun CalculatorScreen(
     viewModel: CalculatorViewModel = hiltViewModel(),
 ) {
-    CalculatorScreenContent()
+
+    val uiState by viewModel.uiState.collectAsState()
+
+    CalculatorScreenContent(
+        uiState = uiState,
+        onNumberClick = viewModel::onNumberClick,
+        onOperatorClick = viewModel::onOperatorClick,
+        onClearClick = viewModel::onClearClick,
+    )
 }
 
 @Composable
-private fun CalculatorScreenContent() {
+private fun CalculatorScreenContent(
+    uiState: CalculatorScreenUiState,
+    onNumberClick: (Int) -> Unit = {},
+    onOperatorClick: (CalculatorOperator) -> Unit = {},
+    onClearClick: () -> Unit = {},
+) {
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
         Column(
             modifier = Modifier.padding(paddingValues),
@@ -55,19 +70,19 @@ private fun CalculatorScreenContent() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
-                    text = "0",
+                    text = uiState.result,
                     fontWeight = FontWeight.Bold,
                     fontSize = 64.sp,
                     textAlign = TextAlign.End,
                     color = Color.White,
+                    lineHeight = 76.sp,
                 )
             }
             CalculatorRow {
                 CalculatorButton(
-                    text = "AC"
-                ) {
-
-                }
+                    text = "AC",
+                    onClick = onClearClick,
+                )
                 CalculatorButton(
                     text = "+/-"
                 ) {
@@ -80,97 +95,83 @@ private fun CalculatorScreenContent() {
                 }
                 CalculatorButton(
                     text = "÷",
-                    backgroundColor = operatorButtonColor
-                ) {
-
-                }
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Divide) }
+                )
             }
             CalculatorRow {
                 CalculatorButton(
                     text = "7",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(7) },
+                )
                 CalculatorButton(
                     text = "8",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(8) },
+                )
                 CalculatorButton(
                     text = "9",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(9) },
+                )
                 CalculatorButton(
                     text = "*",
-                    backgroundColor = operatorButtonColor
-                ) {
-
-                }
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Multiply) }
+                )
             }
             CalculatorRow {
                 CalculatorButton(
                     text = "4",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(4) },
+                )
                 CalculatorButton(
                     text = "5",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(5) },
+                )
                 CalculatorButton(
                     text = "6",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(6) },
+                )
                 CalculatorButton(
                     text = "-",
-                    backgroundColor = operatorButtonColor
-                ) {
-
-                }
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Minus) }
+                )
             }
             CalculatorRow {
                 CalculatorButton(
                     text = "1",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(1) },
+                )
                 CalculatorButton(
                     text = "2",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(2) },
+                )
                 CalculatorButton(
                     text = "3",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(3) },
+                )
                 CalculatorButton(
                     text = "+",
-                    backgroundColor = operatorButtonColor
-                ) {
-
-                }
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Plus) }
+                )
             }
             CalculatorRow {
                 CalculatorButton(
                     weight = 2f,
                     text = "0",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onNumberClick(0) },
+                )
                 CalculatorButton(
                     text = ",",
                     backgroundColor = Color.Gray,
@@ -180,9 +181,8 @@ private fun CalculatorScreenContent() {
                 CalculatorButton(
                     text = "=",
                     backgroundColor = operatorButtonColor,
-                ) {
-
-                }
+                    onClick = { onOperatorClick(CalculatorOperator.Equals) }
+                )
             }
         }
     }
@@ -232,6 +232,8 @@ private fun CalculatorRow(
 @Composable
 fun CalculatorScreenPreview() {
     CalculatorTheme {
-        CalculatorScreenContent()
+        CalculatorScreenContent(
+            uiState = CalculatorScreenUiState(),
+        )
     }
 }
