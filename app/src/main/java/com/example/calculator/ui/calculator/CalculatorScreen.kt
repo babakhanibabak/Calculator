@@ -25,12 +25,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.calculator.ui.theme.CalculatorTheme
 import com.example.calculator.ui.theme.operatorButtonColor
 import com.example.calculator.ui.theme.resultBackgroundColor
 
 @Composable
-fun CalculatorScreen() {
+fun CalculatorScreen(
+    viewModel: CalculatorViewModel = hiltViewModel(),
+) {
     CalculatorScreenContent()
 }
 
