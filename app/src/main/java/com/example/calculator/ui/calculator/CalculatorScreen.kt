@@ -7,3 +7,8 @@ import androidx.compose.ui.Modifier
 fun CalculatorScreen(modifier: Modifier = Modifier) {
 
 }
+
+@Composable
+private fun CalculatorScreenContent(modifier: Modifier = Modifier) {
+
+}
