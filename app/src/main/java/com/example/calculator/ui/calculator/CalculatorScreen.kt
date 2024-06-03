@@ -84,15 +84,13 @@ private fun CalculatorScreenContent(
                     onClick = onClearClick,
                 )
                 CalculatorButton(
-                    text = "+/-"
-                ) {
-
-                }
+                    text = "+/-" ,
+                    onClick = {onOperatorClick(CalculatorOperator.PlusMinus)}
+                )
                 CalculatorButton(
-                    text = "%"
-                ) {
-
-                }
+                    text = "%" ,
+                onClick = {onOperatorClick(CalculatorOperator.Percent)}
+                )
                 CalculatorButton(
                     text = "÷",
                     backgroundColor = operatorButtonColor,

@@ -10,6 +10,8 @@ data class CalculatorScreenUiState(
 sealed interface CalculatorOperator {
     data object Plus : CalculatorOperator // +
     data object Minus : CalculatorOperator // -
+    data object PlusMinus:CalculatorOperator // +-
+    data object Percent : CalculatorOperator // %
     data object Divide : CalculatorOperator // /
     data object Multiply : CalculatorOperator // *
     data object Equals : CalculatorOperator // =

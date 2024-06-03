@@ -48,6 +48,8 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
                 val result = when (operator) {
                     is CalculatorOperator.Plus -> firstNumber.toInt() + secondNumber.toInt()
                     is CalculatorOperator.Minus -> firstNumber.toInt() - secondNumber.toInt()
+                    is CalculatorOperator.PlusMinus -> - firstNumber.toInt() + secondNumber.toInt()
+                    is CalculatorOperator.Percent -> firstNumber.toInt() % secondNumber.toInt()
                     is CalculatorOperator.Multiply -> firstNumber.toInt() * secondNumber.toInt()
                     is CalculatorOperator.Divide -> firstNumber.toInt().toDouble() / secondNumber.toInt().toDouble()
                     else -> this.result.toInt()
