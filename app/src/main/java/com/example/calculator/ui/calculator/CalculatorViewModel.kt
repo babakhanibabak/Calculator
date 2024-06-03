@@ -49,7 +49,7 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
                     is CalculatorOperator.Plus -> firstNumber.toInt() + secondNumber.toInt()
                     is CalculatorOperator.Minus -> firstNumber.toInt() - secondNumber.toInt()
                     is CalculatorOperator.Multiply -> firstNumber.toInt() * secondNumber.toInt()
-                    is CalculatorOperator.Divide -> firstNumber.toInt() / secondNumber.toInt()
+                    is CalculatorOperator.Divide -> firstNumber.toInt().toDouble() / secondNumber.toInt().toDouble()
                     else -> this.result.toInt()
                 }
                 _uiState.update {
