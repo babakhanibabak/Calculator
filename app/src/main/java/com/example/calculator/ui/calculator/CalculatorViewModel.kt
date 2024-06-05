@@ -42,16 +42,28 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
         }
     }
 
+    fun onDotClick() {
+        val currentState=_uiState.value
+        if (currentState.operator == null && !currentState.firstNumber.contains(".") && currentState.secondNumber.isEmpty()) {
+            _uiState.update { it.copy(firstNumber = currentState.firstNumber + ".") }
+        }
+        else if ( currentState.operator != null && !currentState.secondNumber.contains(".") && currentState.secondNumber.isEmpty()){
+            _uiState.update { it.copy(secondNumber = currentState.secondNumber + ".") }
+        }
+    }
+
     private fun calculateResult() {
         with(_uiState.value) {
             if (firstNumber.isNotEmpty() && secondNumber.isNotEmpty() && operator != null) {
                 val result = when (operator) {
                     is CalculatorOperator.Plus -> firstNumber.toInt() + secondNumber.toInt()
                     is CalculatorOperator.Minus -> firstNumber.toInt() - secondNumber.toInt()
-                    is CalculatorOperator.PlusMinus -> - firstNumber.toInt() + secondNumber.toInt()
+                    is CalculatorOperator.PlusMinus -> -firstNumber.toInt()
                     is CalculatorOperator.Percent -> firstNumber.toInt() % secondNumber.toInt()
                     is CalculatorOperator.Multiply -> firstNumber.toInt() * secondNumber.toInt()
+                    is CalculatorOperator.Decimal -> firstNumber.toInt()
                     is CalculatorOperator.Divide -> firstNumber.toInt().toDouble() / secondNumber.toInt().toDouble()
+
                     else -> this.result.toInt()
                 }
                 _uiState.update {

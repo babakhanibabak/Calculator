@@ -44,6 +44,7 @@ fun CalculatorScreen(
         onNumberClick = viewModel::onNumberClick,
         onOperatorClick = viewModel::onOperatorClick,
         onClearClick = viewModel::onClearClick,
+        onDotClick = viewModel::onDotClick,
     )
 }
 
@@ -52,6 +53,7 @@ private fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
     onNumberClick: (Int) -> Unit = {},
     onOperatorClick: (CalculatorOperator) -> Unit = {},
+    onDotClick: () -> Unit = {},
     onClearClick: () -> Unit = {},
 ) {
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
@@ -171,11 +173,10 @@ private fun CalculatorScreenContent(
                     onClick = { onNumberClick(0) },
                 )
                 CalculatorButton(
-                    text = ",",
+                    text = ".",
                     backgroundColor = Color.Gray,
-                ) {
-
-                }
+                    onClick = { onDotClick() },
+                )
                 CalculatorButton(
                     text = "=",
                     backgroundColor = operatorButtonColor,
