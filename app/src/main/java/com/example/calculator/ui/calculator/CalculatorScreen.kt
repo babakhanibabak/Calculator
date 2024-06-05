@@ -175,7 +175,7 @@ private fun CalculatorScreenContent(
                 CalculatorButton(
                     text = ".",
                     backgroundColor = Color.Gray,
-                    onClick = { onDotClick() },
+                    onClick = onDotClick,
                 )
                 CalculatorButton(
                     text = "=",

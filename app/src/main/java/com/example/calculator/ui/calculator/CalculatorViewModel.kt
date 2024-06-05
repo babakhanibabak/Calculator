@@ -19,10 +19,16 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
 
     fun onNumberClick(number: Int) {
         if (_uiState.value.operator == null) {
-            val newNumber = _uiState.value.firstNumber + number
+            val validFirstNumber = if (_uiState.value.firstNumber == "0") "" else {
+                _uiState.value.firstNumber
+            }
+            val newNumber = validFirstNumber + number
             _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
         } else {
-            val newNumber = _uiState.value.secondNumber + number
+            val validSecondNumber = if (_uiState.value.secondNumber == "0") "" else {
+                _uiState.value.secondNumber
+            }
+            val newNumber = validSecondNumber + number
             _uiState.update {
                 it.copy(
                     secondNumber = newNumber,
@@ -33,39 +39,54 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
     }
 
     fun onOperatorClick(operator: CalculatorOperator) {
-        if (operator !is CalculatorOperator.Equals) {
+        if (operator is CalculatorOperator.Equals) {
+            calculateResult()
+        } else if (operator is CalculatorOperator.PlusMinus) {
+            setPlusMinus()
+        } else {
             if (_uiState.value.firstNumber.isNotEmpty()) {
                 _uiState.update { it.copy(operator = operator) }
             }
-        } else {
-            calculateResult()
         }
     }
 
     fun onDotClick() {
-        val currentState=_uiState.value
-        if (currentState.operator == null && !currentState.firstNumber.contains(".") && currentState.secondNumber.isEmpty()) {
-            _uiState.update { it.copy(firstNumber = currentState.firstNumber + ".") }
-        }
-        else if ( currentState.operator != null && !currentState.secondNumber.contains(".") && currentState.secondNumber.isEmpty()){
-            _uiState.update { it.copy(secondNumber = currentState.secondNumber + ".") }
+        if (_uiState.value.operator == null) {
+            if (!_uiState.value.firstNumber.contains(".")) {
+                val validFirstNumber = if (_uiState.value.firstNumber == "") "0" else {
+                    _uiState.value.firstNumber
+                }
+                val newNumber = "$validFirstNumber."
+                _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
+            }
+        } else {
+            if (!_uiState.value.secondNumber.contains(".")) {
+                val validSecondNumber = if (_uiState.value.secondNumber == "") "0" else {
+                    _uiState.value.secondNumber
+                }
+                val newNumber = "$validSecondNumber."
+                _uiState.update {
+                    it.copy(secondNumber = newNumber, result = newNumber)
+                }
+            }
         }
     }
 
     private fun calculateResult() {
         with(_uiState.value) {
             if (firstNumber.isNotEmpty() && secondNumber.isNotEmpty() && operator != null) {
-                val result = when (operator) {
-                    is CalculatorOperator.Plus -> firstNumber.toInt() + secondNumber.toInt()
-                    is CalculatorOperator.Minus -> firstNumber.toInt() - secondNumber.toInt()
-                    is CalculatorOperator.PlusMinus -> -firstNumber.toInt()
-                    is CalculatorOperator.Percent -> firstNumber.toInt() % secondNumber.toInt()
-                    is CalculatorOperator.Multiply -> firstNumber.toInt() * secondNumber.toInt()
-                    is CalculatorOperator.Decimal -> firstNumber.toInt()
-                    is CalculatorOperator.Divide -> firstNumber.toInt().toDouble() / secondNumber.toInt().toDouble()
+                val decimalFirstNumber = firstNumber.toBigDecimal()
+                val decimalSecondNumber = secondNumber.toBigDecimal()
 
-                    else -> this.result.toInt()
+                val result = when (operator) {
+                    is CalculatorOperator.Plus -> decimalFirstNumber + decimalSecondNumber
+                    is CalculatorOperator.Minus -> decimalFirstNumber - decimalSecondNumber
+                    is CalculatorOperator.Percent -> decimalFirstNumber % decimalSecondNumber
+                    is CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
+                    is CalculatorOperator.Divide -> decimalFirstNumber / decimalSecondNumber
+                    else -> this.result.toBigDecimal()
                 }
+
                 _uiState.update {
                     it.copy(
                         firstNumber = result.toString(),
@@ -75,6 +96,28 @@ class CalculatorViewModel @Inject constructor() : ViewModel() {
                     )
                 }
             }
+        }
+    }
+
+    private fun setPlusMinus() {
+        val number = if (_uiState.value.operator == null) {
+            _uiState.value.firstNumber
+        } else {
+            _uiState.value.secondNumber
+        }
+
+        val newNumber = if (number.isNotEmpty() && number != "0" && number.first() != '-') {
+            "-$number"
+        } else if (number.isNotEmpty() && number.first() == '-') {
+            number.substring(1)
+        } else {
+            number
+        }
+
+        if (_uiState.value.operator == null) {
+            _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
+        } else {
+            _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
         }
     }
 }
