@@ -10,28 +10,39 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
-fun BasicCalculatorScreen() {
-    BasicCalculatorScreenContent()
+fun BasicCalculatorScreen(
+    viewModel: BasicCalculatorViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    BasicCalculatorScreenContent(
+        uiState = uiState,
+        onFirstNumberClick =  viewModel::onFirstNumberClick,
+        onSecondNumberClick =  viewModel::onSecondNumberClick,
+        onPlusClick = viewModel::onPlusClick
+    )
 }
 
 @Composable
-fun BasicCalculatorScreenContent() {
+fun BasicCalculatorScreenContent(
+    uiState:BasicCalculatorScreenUiState,
+    onFirstNumberClick: (String) -> Unit = {},
+    onSecondNumberClick:(String) -> Unit = {},
+    onPlusClick: () -> Unit = {},
+
+    ) {
     // TODO: Practice2 - Do state hoisting (move the state to the ViewModel)
-    var firstNumber by remember { mutableStateOf("") }
-    var secondNumber by remember { mutableStateOf("") }
-    var result by remember { mutableStateOf("0") }
 
     Column(
         modifier = Modifier
@@ -42,28 +53,22 @@ fun BasicCalculatorScreenContent() {
         TextField(
             placeholder = { Text(text = "First Number") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            value = firstNumber,
-            onValueChange = {
-                firstNumber = it
-            }
+            value = uiState.firstNumber,
+            onValueChange = onFirstNumberClick
         )
         Spacer(modifier = Modifier.size(32.dp))
         TextField(
             placeholder = { Text(text = "Second Number") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            value = secondNumber,
-            onValueChange = {
-                secondNumber = it
-            },
+            value = uiState.secondNumber,
+            onValueChange = onSecondNumberClick,
         )
         Spacer(modifier = Modifier.size(64.dp))
-        Button(onClick = {
-            result = (firstNumber.toInt() + secondNumber.toInt()).toString()
-        }) {
+        Button(onClick = onPlusClick) {
             Text(text = "Plus")
         }
         Spacer(modifier = Modifier.size(32.dp))
-        Text(text = "Result: $result")
+        Text(text = "Result: ${uiState.result}")
     }
 }
 
@@ -71,6 +76,12 @@ fun BasicCalculatorScreenContent() {
 @Composable
 fun BasicCalculatorScreenPreview(modifier: Modifier = Modifier) {
     CalculatorTheme {
-        BasicCalculatorScreenContent()
+        BasicCalculatorScreenContent(
+            uiState = BasicCalculatorScreenUiState(
+                firstNumber = "1",
+                secondNumber = "2",
+                result = "3"
+            )
+        )
     }
 }
