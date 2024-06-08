@@ -22,15 +22,15 @@ import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
 fun BasicCalculatorScreen(
-    viewModel: BasicCalculatorViewModel = hiltViewModel()
+    viewModel: BasicCalculatorViewModel = hiltViewModel(),
+
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
     BasicCalculatorScreenContent(
         uiState = uiState,
         onFirstNumberClick =  viewModel::onFirstNumberClick,
         onSecondNumberClick =  viewModel::onSecondNumberClick,
-        onPlusClick = viewModel::onPlusClick
+        onPlusClick = viewModel::onPlusClick,
     )
 }
 
