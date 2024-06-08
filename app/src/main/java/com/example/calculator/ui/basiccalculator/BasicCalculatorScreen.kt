@@ -23,45 +23,48 @@ import com.example.calculator.ui.theme.CalculatorTheme
 @Composable
 fun BasicCalculatorScreen(
     viewModel: BasicCalculatorViewModel = hiltViewModel(),
-
+    onBackClick: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
     BasicCalculatorScreenContent(
         uiState = uiState,
-        onFirstNumberClick =  viewModel::onFirstNumberClick,
-        onSecondNumberClick =  viewModel::onSecondNumberClick,
+        onFirstNumberValueChange = viewModel::onFirstNumberValueChange,
+        onSecondNumberValueChange = viewModel::onSecondNumberValueChange,
         onPlusClick = viewModel::onPlusClick,
+        onBackClick = onBackClick,
     )
 }
 
 @Composable
 fun BasicCalculatorScreenContent(
-    uiState:BasicCalculatorScreenUiState,
-    onFirstNumberClick: (String) -> Unit = {},
-    onSecondNumberClick:(String) -> Unit = {},
+    uiState: BasicCalculatorScreenUiState,
+    onFirstNumberValueChange: (String) -> Unit = {},
+    onSecondNumberValueChange: (String) -> Unit = {},
     onPlusClick: () -> Unit = {},
-
-    ) {
-    // TODO: Practice2 - Do state hoisting (move the state to the ViewModel)
-
+    onBackClick: () -> Unit = {},
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 32.dp, end = 32.dp, top = 128.dp, bottom = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Button(onClick = onBackClick) {
+            Text(text = "Back")
+        }
+        Spacer(modifier = Modifier.size(64.dp))
         TextField(
             placeholder = { Text(text = "First Number") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             value = uiState.firstNumber,
-            onValueChange = onFirstNumberClick
+            onValueChange = onFirstNumberValueChange
         )
         Spacer(modifier = Modifier.size(32.dp))
         TextField(
             placeholder = { Text(text = "Second Number") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             value = uiState.secondNumber,
-            onValueChange = onSecondNumberClick,
+            onValueChange = onSecondNumberValueChange,
         )
         Spacer(modifier = Modifier.size(64.dp))
         Button(onClick = onPlusClick) {

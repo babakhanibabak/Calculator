@@ -8,8 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
+import com.example.calculator.ui.calculator.CalculatorScreen
 import com.example.calculator.ui.logInScreen.LogInScreen
-import com.example.calculator.ui.logInScreen.OnBasicCalculator
 import com.example.calculator.ui.theme.CalculatorTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,16 +20,30 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CalculatorTheme {
-                // TODO: Practice 1: Add navigation with navigation screen with two buttons
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "LoginScreen") {
                     composable(route = "LoginScreen") {
-                        LogInScreen(navController = navController)
+                        LogInScreen(
+                            onBasicCalculatorClick = {
+                                navController.navigate("BasicCalculatorScreen")
+                            },
+                            onCalculatorClick = {
+                                navController.navigate("CalculatorScreen")
+                            }
+                        )
                     }
                     composable("BasicCalculatorScreen") {
-                        BasicCalculatorScreen()
+                        BasicCalculatorScreen(
+                            onBackClick = {
+                                navController.popBackStack()
+                            }
+                        )
+                    }
+                    composable("CalculatorScreen") {
+                        CalculatorScreen()
                     }
                 }
             }
         }
-    }}
+    }
+}
