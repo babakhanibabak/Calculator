@@ -1,4 +1,4 @@
-package com.example.calculator.ui.logInScreen
+package com.example.calculator.ui.navigation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,18 +19,18 @@ import androidx.compose.ui.unit.dp
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
-fun LogInScreen(
+fun NavigationScreen(
     onBasicCalculatorClick: () -> Unit = {},
     onCalculatorClick: () -> Unit = {},
 ) {
-    LoginScreenContent(
+    NavigationScreenContent(
         onBasicCalculatorClick = onBasicCalculatorClick,
         onCalculatorClick = onCalculatorClick
     )
 }
 
 @Composable
-fun LoginScreenContent(
+fun NavigationScreenContent(
     onBasicCalculatorClick: () -> Unit = {},
     onCalculatorClick: () -> Unit = {},
 ) {
@@ -87,8 +87,8 @@ fun CalculatorButton(
 
 @Preview
 @Composable
-private fun LogInScreenPreview(modifier: Modifier = Modifier) {
+private fun NavigationScreenPreview(modifier: Modifier = Modifier) {
     CalculatorTheme {
-        LoginScreenContent()
+        NavigationScreenContent()
     }
 }

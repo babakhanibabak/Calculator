@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
-import com.example.calculator.ui.logInScreen.LogInScreen
+import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "LoginScreen") {
                     composable(route = "LoginScreen") {
-                        LogInScreen(
+                        NavigationScreen(
                             onBasicCalculatorClick = {
                                 navController.navigate("BasicCalculatorScreen")
                             },
