@@ -37,51 +37,42 @@ fun NavigationScreenContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp),
+            .padding(48.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
-        BasicCalculatorButton(
+        NavigationButton(
             modifier = Modifier,
+            text = "Basic Calculator",
+            color = Color.Green,
             onClick = onBasicCalculatorClick
         )
-        Spacer(modifier = Modifier.size(50.dp))
-        CalculatorButton(
+        Spacer(modifier = Modifier.size(16.dp))
+        NavigationButton(
             modifier = Modifier,
+            text = "Calculator",
+            color = Color.Magenta,
             onClick = onCalculatorClick,
         )
     }
 }
 
-@Composable
-fun BasicCalculatorButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
-) {
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .padding(32.dp)
-            .fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(Color.Green)
-    ) {
-        Text(text = "BasicCalculatorScreen")
-    }
-}
 
 @Composable
-fun CalculatorButton(
+fun NavigationButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    text: String,
+    color: Color,
+    onClick: () -> Unit = {},
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier
-            .padding(32.dp)
-            .fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(Color.Magenta)
+        modifier = modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color,
+        )
     ) {
-        Text(text = "CalculatorScreen")
+        Text(text = text)
     }
 }
 
