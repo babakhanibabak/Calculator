@@ -83,7 +83,7 @@ fun Result(modifier: Modifier = Modifier,
                 .clip(CircleShape)
                 .background(Color.Yellow),
         )
-        Text(text =uiState.toString())
+        Text(text ="0")
     }
 }
 
