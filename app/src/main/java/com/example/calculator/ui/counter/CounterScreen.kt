@@ -1,6 +1,7 @@
 package com.example.calculator.ui.counter
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,30 +20,37 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.calculator.ui.basiccalculator.BasicCalculatorViewModel
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
 fun CounterScreen(
-    viewModel: BasicCalculatorViewModel = hiltViewModel()
+    viewModel: CounterViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
 
-    CounterScreenContent()
+   val uiState by viewModel.uiState.collectAsState()
+
+    CounterScreenContent(uiState= uiState,
+        onPlusClick = viewModel::increment,
+        onMinusClick = viewModel::decrement,
+        onResetClick = viewModel::onResetClick
+    )
 }
 
 @Composable
 private fun CounterScreenContent(
     modifier: Modifier = Modifier,
-
-    ) {
+    uiState:CounterScreenUiState,
+    onPlusClick: () -> Unit = {},
+    onMinusClick: () -> Unit = {},
+    onResetClick: () -> Unit = {}
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -54,42 +62,49 @@ private fun CounterScreenContent(
                 .padding(64.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CircleText()
+            Result(uiState = uiState)
             Spacer(modifier = Modifier.size(32.dp))
-            Operators()
-            Spacer(modifier =Modifier.size(32.dp))
-            ResetButton ()
+            Operators(onPlusClick = onPlusClick, onMinusClick = onMinusClick)
+            Spacer(modifier = Modifier.size(32.dp))
+            ResetButton(onResetClick= onResetClick)
         }
     }
 }
 
+@Composable
+fun Result(modifier: Modifier = Modifier,
+           uiState: CounterScreenUiState) {
+    Box {
+        Box(
+            modifier = modifier
+                .size(120.dp)
+                .border(2.dp, Color.Black, CircleShape)
+                .padding(1.dp)
+                .clip(CircleShape)
+                .background(Color.Yellow),
+        )
+        Text(text =uiState.toString())
+    }
+}
+
+
 //@Composable
-//fun Circle(modifier: Modifier = Modifier) {
-//    Box(
+//fun CircleText(modifier: Modifier = Modifier) {
+//    Text(
 //        modifier = modifier
-//            .size(120.dp)
-//            .border(2.dp, Color.Black, CircleShape)
-//            .padding(1.dp)
-//            .clip(CircleShape)
-//            .background(Color.Yellow),
+//            .background(Color.Yellow, shape = CircleShape)
+//            .padding(8.dp)
+//            .size(50.dp),
+//        textAlign = TextAlign.Center, text = "0",
+//        color = Color.Black
 //    )
 //}
 
 @Composable
-fun CircleText(modifier: Modifier = Modifier) {
-    Text(modifier = modifier
-        .background(Color.Yellow, shape = CircleShape)
-        .padding(8.dp)
-        .size(50.dp),
-        textAlign = TextAlign.Center ,text = "0",
-        color = Color.Black)
-}
-
-@Composable
 fun Operators(
     modifier: Modifier = Modifier,
-    onIncrementClick: () -> Unit = {},
-    onDecrementClick: () -> Unit = {},
+    onPlusClick: () -> Unit ,
+    onMinusClick: () -> Unit ,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -98,7 +113,7 @@ fun Operators(
     ) {
         OperationButton(
             modifier = Modifier.weight(0.5f),
-            onClick = onIncrementClick,
+            onClick = onPlusClick,
             text = "+",
             fontSize = 30.sp,
             color = Color.Green
@@ -106,7 +121,7 @@ fun Operators(
         Spacer(modifier = Modifier.size(32.dp))
         OperationButton(
             modifier = Modifier.weight(0.5f),
-            onClick = onDecrementClick,
+            onClick = onMinusClick,
             text = "–",
             fontSize = 30.sp,
             color = Color.Red
@@ -117,7 +132,7 @@ fun Operators(
 @Composable
 fun OperationButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
+   onClick: () -> Unit,
     text: String,
     fontSize: TextUnit,
     color: Color
@@ -134,9 +149,9 @@ fun OperationButton(
 @Composable
 fun ResetButton(
     modifier: Modifier = Modifier,
-    onResetClick: () -> Unit={}
+    onResetClick: () -> Unit
 ) {
-    Row (modifier = modifier.fillMaxWidth()){
+    Row(modifier = modifier.fillMaxWidth()) {
         OperationButton(
             modifier = Modifier,
             onClick = onResetClick,
@@ -151,7 +166,7 @@ fun ResetButton(
 @Composable
 private fun CounterScreenContentPreview() {
     CalculatorTheme {
-        CounterScreenContent()
+        CounterScreenContent(uiState = CounterScreenUiState())
 
     }
 

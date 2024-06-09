@@ -14,6 +14,8 @@ class CounterViewModel @Inject constructor(): ViewModel() {
     }
 fun decrement() {
     _uiState.value--
-
 }
+    fun onResetClick() {
+        _uiState.value=0
+    }
 }
