@@ -22,10 +22,12 @@ import com.example.calculator.ui.theme.CalculatorTheme
 fun NavigationScreen(
     onBasicCalculatorClick: () -> Unit = {},
     onCalculatorClick: () -> Unit = {},
+    onCounterClick: () -> Unit
 ) {
     NavigationScreenContent(
         onBasicCalculatorClick = onBasicCalculatorClick,
-        onCalculatorClick = onCalculatorClick
+        onCalculatorClick = onCalculatorClick,
+        onCounterClick = onCounterClick,
     )
 }
 
@@ -33,6 +35,7 @@ fun NavigationScreen(
 fun NavigationScreenContent(
     onBasicCalculatorClick: () -> Unit = {},
     onCalculatorClick: () -> Unit = {},
+    onCounterClick: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -53,6 +56,13 @@ fun NavigationScreenContent(
             text = "Calculator",
             color = Color.Magenta,
             onClick = onCalculatorClick,
+        )
+        Spacer(modifier = Modifier.size(16.dp))
+        NavigationButton(
+            modifier = Modifier,
+            text = "Counter",
+            color = Color.Red,
+            onClick = onCounterClick,
         )
     }
 }

@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
+import com.example.calculator.ui.counter.CounterScreen
 import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,9 @@ class MainActivity : ComponentActivity() {
                             },
                             onCalculatorClick = {
                                 navController.navigate("CalculatorScreen")
+                            },
+                            onCounterClick = {
+                                navController.navigate("CounterScreen")
                             }
                         )
                     }
@@ -41,6 +45,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("CalculatorScreen") {
                         CalculatorScreen()
+                    }
+                    composable("CounterScreen") {
+                        CounterScreen()
                     }
                 }
             }
