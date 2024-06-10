@@ -1,6 +1,6 @@
-package com.example.calculator.ui.cryptolist
+package com.example.calculator.domain
 
-data class CoinListUiModel(
+data class CoinListItemModel(
     val id: String,
     val name: String,
     val symbol: String,

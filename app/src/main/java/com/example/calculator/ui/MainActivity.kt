@@ -34,6 +34,9 @@ class MainActivity : ComponentActivity() {
                             },
                             onCounterClick = {
                                 navController.navigate("CounterScreen")
+                            },
+                            onCryptoListClick = {
+                                navController.navigate("CryptoListScreen")
                             }
                         )
                     }

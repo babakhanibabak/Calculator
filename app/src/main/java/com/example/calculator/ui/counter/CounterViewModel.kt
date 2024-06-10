@@ -5,17 +5,22 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
+
 @HiltViewModel
-class CounterViewModel @Inject constructor(): ViewModel() {
+class CounterViewModel @Inject constructor() : ViewModel() {
+
     private val _uiState = MutableStateFlow(0)
-    val uiState=_uiState.asStateFlow()
-    fun increment() {
+    val uiState = _uiState.asStateFlow()
+
+    fun onPlusClick() {
         _uiState.value++
     }
-fun decrement() {
-    _uiState.value--
-}
+
+    fun onMinusClick() {
+        _uiState.value--
+    }
+
     fun onResetClick() {
-        _uiState.value=0
+        _uiState.value = 0
     }
 }
