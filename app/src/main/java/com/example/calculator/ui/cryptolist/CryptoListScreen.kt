@@ -1,8 +1,8 @@
 package com.example.calculator.ui.cryptolist
 
-import android.content.ClipData.Item
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,13 +30,14 @@ fun CryptoListScreen(
 @Composable
 private fun CryptoListScreenContent(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
 ) {
-
+Column(modifier=modifier) {
     CoinItem(model = CoinListModel(id = "1", name = "Bitcoin", symbol = "BTC", rank = 1,photo= R.drawable.bit))
     CoinItem(model = CoinListModel(id = "2", name = "tether", symbol = "tet", rank = 1,photo= R.drawable.tether))
     CoinItem(model = CoinListModel(id = "3", name = "ethereum", symbol = "eth", rank = 1,photo= R.drawable.ethereum))
     CoinItem(model = CoinListModel(id = "4", name = "usdc", symbol = "usd", rank = 1,photo= R.drawable.usdc))
+}
+
 }
 
 @Composable
