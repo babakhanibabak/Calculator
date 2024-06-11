@@ -83,7 +83,8 @@ fun CoinItem(
     modifier: Modifier = Modifier,
     onClick: (CoinListUiModel) -> Unit = {},
     model: CoinListUiModel,
-) {
+
+    ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -94,13 +95,19 @@ fun CoinItem(
             )
             .clickable { onClick(model) }
     ) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
             Image(
                 modifier = Modifier.size(64.dp),
                 painter = painterResource(id = model.photo),
                 contentDescription = "",
             )
-            Text(text = model.name)
+            Text(text = model.name,modifier=Modifier.align(Alignment.CenterVertically))
+            Text(text = model.id,modifier=Modifier.align(Alignment.CenterVertically))
+            Text(text = model.symbol,modifier=Modifier.align(Alignment.CenterVertically))
+
         }
     }
 }
