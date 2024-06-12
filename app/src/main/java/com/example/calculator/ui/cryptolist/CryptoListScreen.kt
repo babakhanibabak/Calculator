@@ -75,7 +75,6 @@ private fun CryptoListScreenContent(
 }
 
 
-
 @Composable
 fun CoinsList(dataList: List<CoinListUiModel>) {
 
