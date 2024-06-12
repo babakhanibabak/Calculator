@@ -106,7 +106,13 @@ fun CoinsList(dataList: List<CoinListUiModel>) {
 fun AddAppBar(modifier: Modifier = Modifier) {
     TopAppBar(modifier = modifier,
         colors = TopAppBarDefaults.topAppBarColors(Color.Magenta),
-        title = { Text(text = "Crypto List", textAlign = TextAlign.Center, fontSize = 32.sp) })
+        title = {
+            Text(
+                text = "Crypto List",
+                textAlign = TextAlign.Center,
+                fontSize = 32.sp
+            )
+        })
 }
 
 @Composable
