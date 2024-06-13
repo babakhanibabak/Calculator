@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class CoinDetailScreenMapper @Inject constructor() {
 fun mapToUiModel(model: CoinDetailModel): CoinDetailUiModel {
-    return CoinDetailUiModel(
+    return  CoinDetailUiModel(
         message = model.message,
         description = model.description,
         firstPrice = model.firstPrice,
