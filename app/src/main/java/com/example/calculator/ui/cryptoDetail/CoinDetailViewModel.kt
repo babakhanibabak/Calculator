@@ -1,6 +1,5 @@
 package com.example.calculator.ui.cryptoDetail
 
-import androidx.compose.ui.input.key.Key.Companion.I
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calculator.domain.CoinDetailModel
