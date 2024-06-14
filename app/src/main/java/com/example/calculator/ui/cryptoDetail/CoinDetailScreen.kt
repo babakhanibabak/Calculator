@@ -42,11 +42,12 @@ private fun CoinDetailScreenContent(
 
             uiState.error.isNotEmpty() -> {}
             else -> {
-                uiState.showDetailData }
+                uiState.showDetailData
             }
-
         }
+
     }
+}
 
 
 @Composable
@@ -62,7 +63,14 @@ fun CoinDetail(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-
+                    CoinDetail(
+                        data = CoinDetailUiModel(
+                            message = "Detail",
+                            description = "Description",
+                            firstPrice = 20,
+                            lastPrice = 50
+                        )
+                    )
                 }
             }
         }
