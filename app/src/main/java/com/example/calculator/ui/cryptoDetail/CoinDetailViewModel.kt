@@ -13,15 +13,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
-private val coinDetailRepository:CoinDetailRepository,
+    private val coinDetailRepository: CoinDetailRepository,
     private val mapper: CoinDetailScreenMapper
-):ViewModel() {
-private val _uiState= MutableStateFlow(CoinDetailScreenState())
-    val uiState=_uiState.asStateFlow()
-init {
-    loadData()
-}
-    private fun loadData(){
+) : ViewModel() {
+    private val _uiState = MutableStateFlow(CoinDetailScreenState())
+    val uiState = _uiState.asStateFlow()
+
+    init {
+        loadData()
+    }
+
+    private fun loadData() {
         viewModelScope.launch {
             _uiState.update {
                 it.copy(isLoading = true)
@@ -29,11 +31,22 @@ init {
             runCatching {
                 coinDetailRepository.getCoinDetail(coinId = "")
             }.onSuccess {
-            _uiState.update { it.copy(isLoading = false, showDetailData = mapper.mapToUiModel(model = CoinDetailModel())) }
-            }.onFailure {
-                error-> _uiState.update {
-                it.copy(isLoading = false, error = error.message.toString())
-            }  }
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        showDetailData = mapper.mapToUiModel(
+                            model = CoinDetailModel(
+                                firstPrice = 0,
+                                lastPrice = 0
+                            )
+                        )
+                    )
+                }
+            }.onFailure { error ->
+                _uiState.update {
+                    it.copy(isLoading = false, error = error.message.toString())
+                }
+            }
         }
     }
 }
