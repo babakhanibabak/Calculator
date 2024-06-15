@@ -1,6 +1,6 @@
 package com.example.calculator.ui.cryptoDetail
 
-import com.example.calculator.domain.CoinDetailModel
+import com.example.calculator.domain.model.CoinDetailModel
 import javax.inject.Inject
 
 class CoinDetailScreenMapper @Inject constructor() {

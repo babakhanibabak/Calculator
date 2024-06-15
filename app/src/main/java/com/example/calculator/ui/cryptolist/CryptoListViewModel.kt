@@ -2,7 +2,7 @@ package com.example.calculator.ui.cryptolist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.calculator.domain.CoinListDataProvider
+import com.example.calculator.domain.repository.CoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CryptoListViewModel @Inject constructor(
-    private val coinListDataProvider: CoinListDataProvider,
+    private val coinRepository: CoinRepository,
     private val mapper: CoinListScreenMapper,
 ) : ViewModel() {
 
@@ -27,7 +27,7 @@ class CryptoListViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             runCatching {
-                coinListDataProvider.getCoinsList()
+                coinRepository.getCoinsList()
             }.onSuccess { coins ->
                 _uiState.update { it.copy(isLoading = false, dataList = mapper.map(coins)) }
             }.onFailure { error ->

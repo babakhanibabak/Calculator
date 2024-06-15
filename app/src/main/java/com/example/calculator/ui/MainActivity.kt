@@ -40,7 +40,6 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate("CryptoListScreen")
                             }
                         )
-                        CoinDetailScreen()
                     }
                     composable("BasicCalculatorScreen") {
                         BasicCalculatorScreen(
@@ -55,8 +54,15 @@ class MainActivity : ComponentActivity() {
                     composable("CounterScreen") {
                         CounterScreen()
                     }
-                    composable("CryptoListScreen"){
-                        CryptoListScreen()
+                    composable("CryptoListScreen") {
+                        CryptoListScreen(
+                            onItemClick = {
+                                navController.navigate("CoinDetailScreen")
+                            }
+                        )
+                    }
+                    composable("CoinDetailScreen") {
+                        CoinDetailScreen()
                     }
                 }
             }

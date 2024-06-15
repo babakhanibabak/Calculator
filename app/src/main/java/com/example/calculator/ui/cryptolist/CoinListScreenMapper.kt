@@ -1,6 +1,6 @@
 package com.example.calculator.ui.cryptolist
 
-import com.example.calculator.domain.CoinListItemModel
+import com.example.calculator.domain.model.CoinListItemModel
 import javax.inject.Inject
 
 class CoinListScreenMapper @Inject constructor() {

@@ -38,15 +38,17 @@ import com.example.calculator.ui.theme.CalculatorTheme
 @Composable
 fun CryptoListScreen(
     viewModel: CryptoListViewModel = hiltViewModel(),
+    onItemClick: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    CryptoListScreenContent(uiState = uiState)
+    CryptoListScreenContent(uiState = uiState, onItemClick = onItemClick)
 }
 
 @Composable
 private fun CryptoListScreenContent(
     uiState: CoinListScreenState,
+    onItemClick: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         when {
@@ -68,7 +70,7 @@ private fun CryptoListScreenContent(
 
             else -> {
                 // Show list
-                CoinsList(dataList = uiState.dataList)
+                CoinsList(dataList = uiState.dataList, onItemClick = onItemClick)
             }
         }
     }
@@ -76,11 +78,12 @@ private fun CryptoListScreenContent(
 
 
 @Composable
-fun CoinsList(dataList: List<CoinListUiModel>) {
-
-    Scaffold(topBar = {
-        AddAppBar()
-    },
+fun CoinsList(
+    dataList: List<CoinListUiModel>,
+    onItemClick: () -> Unit,
+) {
+    Scaffold(
+        topBar = { AddAppBar() },
         content = { padding ->
             Surface(modifier = Modifier.padding(padding)) {
                 LazyColumn(
@@ -93,7 +96,12 @@ fun CoinsList(dataList: List<CoinListUiModel>) {
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(dataList) {
-                        CoinItem(model = it)
+                        CoinItem(
+                            model = it,
+                            onClick = {
+                                onItemClick()
+                            }
+                        )
                     }
                 }
             }
@@ -120,8 +128,7 @@ fun CoinItem(
     modifier: Modifier = Modifier,
     onClick: (CoinListUiModel) -> Unit = {},
     model: CoinListUiModel,
-
-    ) {
+) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -153,6 +160,6 @@ fun CoinItem(
 @Composable
 fun CryptoListScreenPreview(modifier: Modifier = Modifier) {
     CalculatorTheme {
-        CryptoListScreenContent(CoinListScreenState())
+        CryptoListScreenContent(CoinListScreenState(), onItemClick = {})
     }
 }

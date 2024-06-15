@@ -1,4 +1,4 @@
-package com.example.calculator.domain
+package com.example.calculator.domain.model
 
 data class CoinListItemModel(
     val id: String,

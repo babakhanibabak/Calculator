@@ -1,7 +1,7 @@
 package com.example.calculator.data
 
-import com.example.calculator.domain.CoinDetailRepository
-import com.example.calculator.domain.CoinListDataProvider
+import com.example.calculator.data.repository.CoinRepositoryImpl
+import com.example.calculator.domain.repository.CoinRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,9 +13,5 @@ import javax.inject.Singleton
 interface DataModule {
     @Binds
     @Singleton
-    fun bindCoinListDataProvider(impl: CoinListDataProviderImpl): CoinListDataProvider
-
-    @Binds
-    @Singleton
-    fun bindCoinCoinDetailRepository(impl: CoinDetailDataImpl): CoinDetailRepository
+    fun bindCoinCoinDetailRepository(impl: CoinRepositoryImpl): CoinRepository
 }

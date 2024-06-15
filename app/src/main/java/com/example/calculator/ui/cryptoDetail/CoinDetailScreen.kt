@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -15,11 +16,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.calculator.domain.CoinDetailModel
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
@@ -38,15 +40,16 @@ private fun CoinDetailScreenContent(
     Box(modifier = modifier.fillMaxSize()) {
         when {
             uiState.isLoading -> {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
+                )
             }
 
             uiState.error.isNotEmpty() -> {}
-            else ->  {
-                CoinDetail(uiState = uiState,data =CoinDetailUiModel() )
+            else -> {
+                CoinDetail(uiState = uiState)
             }
         }
-
     }
 }
 
@@ -55,8 +58,6 @@ private fun CoinDetailScreenContent(
 fun CoinDetail(
     modifier: Modifier = Modifier,
     uiState: CoinDetailScreenState,
-    data: CoinDetailUiModel,
-    onClick: (CoinDetailUiModel) -> Unit = {}
 ) {
     Scaffold(
         topBar = { AddAppBar() },
@@ -66,21 +67,13 @@ fun CoinDetail(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-                    CoinDetail(
-                        uiState = uiState,
-                        data = CoinDetailUiModel(
-                            message = "Detail",
-                            description = "Description",
-                            firstPrice = 20,
-                            lastPrice = 50
-                        )
-                    )
+                    uiState.showDetailData?.let { data ->
+                        // TODO: Design detail screen here to show detail data
+                    }
                 }
             }
         }
     )
-
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,7 +81,13 @@ fun CoinDetail(
 fun AddAppBar(modifier: Modifier = Modifier) {
     TopAppBar(
         modifier = modifier,
-        title = { Text(text = "Crypto Detail") },
+        title = {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Crypto Detail",
+                textAlign = TextAlign.Center,
+            )
+        },
         colors = TopAppBarDefaults.topAppBarColors(Color.Blue)
     )
 }
@@ -97,6 +96,15 @@ fun AddAppBar(modifier: Modifier = Modifier) {
 @Composable
 private fun CoinDetailScreenPreview() {
     CalculatorTheme {
-        CoinDetailScreenContent(uiState = CoinDetailScreenState())
+        CoinDetailScreenContent(
+            uiState = CoinDetailScreenState(
+                showDetailData = CoinDetailUiModel(
+                    message = "Detail",
+                    description = "Description",
+                    firstPrice = 20,
+                    lastPrice = 50,
+                )
+            )
+        )
     }
 }

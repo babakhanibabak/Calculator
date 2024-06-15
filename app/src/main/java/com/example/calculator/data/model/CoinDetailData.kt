@@ -1,6 +1,6 @@
-package com.example.calculator.data
+package com.example.calculator.data.model
 
-import com.example.calculator.domain.CoinDetailModel
+import com.example.calculator.domain.model.CoinDetailModel
 
 data class CoinDetailData(
     val message:String,
@@ -9,7 +9,7 @@ data class CoinDetailData(
     val lastPrice: Int
 )
 
-fun mapToDomainModel(dto:CoinDetailData): CoinDetailModel {
+fun mapToDomainModel(dto: CoinDetailData): CoinDetailModel {
     return CoinDetailModel(
         message = dto.message,
         description = dto.description,
