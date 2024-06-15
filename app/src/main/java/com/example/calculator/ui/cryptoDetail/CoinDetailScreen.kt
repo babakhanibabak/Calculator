@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.calculator.domain.CoinDetailModel
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
@@ -41,8 +42,8 @@ private fun CoinDetailScreenContent(
             }
 
             uiState.error.isNotEmpty() -> {}
-            else -> {
-                uiState.showDetailData
+            else ->  {
+                CoinDetail(uiState = uiState,data =CoinDetailUiModel() )
             }
         }
 
@@ -53,7 +54,9 @@ private fun CoinDetailScreenContent(
 @Composable
 fun CoinDetail(
     modifier: Modifier = Modifier,
-    data: CoinDetailUiModel
+    uiState: CoinDetailScreenState,
+    data: CoinDetailUiModel,
+    onClick: (CoinDetailUiModel) -> Unit = {}
 ) {
     Scaffold(
         topBar = { AddAppBar() },
@@ -64,6 +67,7 @@ fun CoinDetail(
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
                     CoinDetail(
+                        uiState = uiState,
                         data = CoinDetailUiModel(
                             message = "Detail",
                             description = "Description",

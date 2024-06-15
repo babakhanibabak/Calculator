@@ -1,8 +1,8 @@
 package com.example.calculator.ui.cryptoDetail
 
 data class CoinDetailUiModel(
-    val message:String,
-    val description:String,
-    val firstPrice:Int,
-    val lastPrice: Int
+    val message:String?=null,
+    val description:String?=null,
+    val firstPrice:Int?=null,
+    val lastPrice: Int?=null
 )

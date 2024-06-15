@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
 import com.example.calculator.ui.counter.CounterScreen
+import com.example.calculator.ui.cryptoDetail.CoinDetailScreen
 import com.example.calculator.ui.cryptolist.CryptoListScreen
 import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate("CryptoListScreen")
                             }
                         )
+                        CoinDetailScreen()
                     }
                     composable("BasicCalculatorScreen") {
                         BasicCalculatorScreen(
