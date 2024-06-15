@@ -1,5 +1,6 @@
 package com.example.calculator.data
 
+import com.example.calculator.domain.CoinDetailRepository
 import com.example.calculator.domain.CoinListDataProvider
 import dagger.Binds
 import dagger.Module
@@ -13,4 +14,8 @@ interface DataModule {
     @Binds
     @Singleton
     fun bindCoinListDataProvider(impl: CoinListDataProviderImpl): CoinListDataProvider
+
+    @Binds
+    @Singleton
+    fun bindCoinCoinDetailRepository(impl: CoinDetailDataImpl): CoinDetailRepository
 }
