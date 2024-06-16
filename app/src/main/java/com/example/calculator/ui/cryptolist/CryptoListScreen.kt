@@ -115,10 +115,10 @@ fun AddAppBar(modifier: Modifier = Modifier) {
     TopAppBar(modifier = modifier,
         colors = TopAppBarDefaults.topAppBarColors(Color.Magenta),
         title = {
-            Text(
+            Text(modifier=Modifier.fillMaxWidth(),
                 text = "Crypto List",
                 textAlign = TextAlign.Center,
-                fontSize = 32.sp
+                fontSize = 35.sp
             )
         })
 }
@@ -133,9 +133,9 @@ fun CoinItem(
         modifier = modifier
             .fillMaxWidth()
             .border(
-                width = 5.dp,
-                color = Color.Red,
-                shape = RoundedCornerShape(10.dp)
+                width = 3.dp,
+                color = Color.LightGray,
+                shape = RoundedCornerShape(15.dp)
             )
             .clickable { onClick(model) }
     ) {

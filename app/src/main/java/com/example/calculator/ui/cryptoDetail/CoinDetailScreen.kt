@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.calculator.ui.theme.CalculatorTheme
 
@@ -86,6 +87,7 @@ fun AddAppBar(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 text = "Crypto Detail",
                 textAlign = TextAlign.Center,
+                fontSize = 35.sp
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(Color.Blue)
