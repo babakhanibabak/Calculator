@@ -13,5 +13,5 @@ import javax.inject.Singleton
 interface DataModule {
     @Binds
     @Singleton
-    fun bindCoinCoinDetailRepository(impl: CoinRepositoryImpl): CoinRepository
+    fun bindCoinDetailRepository(impl: CoinRepositoryImpl): CoinRepository
 }

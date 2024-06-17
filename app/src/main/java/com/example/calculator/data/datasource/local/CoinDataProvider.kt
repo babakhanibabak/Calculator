@@ -20,10 +20,10 @@ class CoinDataProvider @Inject constructor() {
     suspend fun getCoinDetail(coinId: String): CoinDetailData {
         delay(2000)
         return CoinDetailData(
-            message = "message",
-            description = "description",
+            message = "this is Bitcoin crypto currency",
+            description = "Bitcoin is now first crypto currency",
             firstPrice = 10,
-            lastPrice = 20,
+            lastPrice = 64000,
         )
     }
 }
