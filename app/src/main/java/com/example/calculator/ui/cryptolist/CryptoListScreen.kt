@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -145,12 +146,13 @@ fun CoinItem(
         ) {
             Image(
                 modifier = Modifier.size(64.dp),
+                contentScale = ContentScale.Crop,
                 painter = painterResource(id = model.photo),
                 contentDescription = "",
             )
-            Text(text = model.name, modifier = Modifier.align(Alignment.CenterVertically))
-            Text(text = model.id, modifier = Modifier.align(Alignment.CenterVertically))
-            Text(text = model.symbol, modifier = Modifier.align(Alignment.CenterVertically))
+            Text(text = model.name, fontSize = 30.sp, modifier = Modifier.align(Alignment.CenterVertically))
+            Text(text = model.id,fontSize = 25.sp, modifier = Modifier.align(Alignment.CenterVertically))
+            Text(text = model.symbol,fontSize = 25.sp, modifier = Modifier.align(Alignment.CenterVertically))
 
         }
     }
