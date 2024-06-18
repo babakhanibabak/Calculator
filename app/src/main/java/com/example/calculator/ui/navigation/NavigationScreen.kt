@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.calculator.ui.common.buildTestTag
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
@@ -48,28 +49,28 @@ fun NavigationScreenContent(
         verticalArrangement = Arrangement.Center,
     ) {
         NavigationButton(
-            modifier = Modifier,
+            modifier = Modifier.buildTestTag("basic_calculator"),
             text = "Basic Calculator",
             color = Color.Green,
             onClick = onBasicCalculatorClick
         )
         Spacer(modifier = Modifier.size(16.dp))
         NavigationButton(
-            modifier = Modifier,
+            modifier = Modifier.buildTestTag("calculator"),
             text = "Calculator",
             color = Color.Magenta,
             onClick = onCalculatorClick,
         )
         Spacer(modifier = Modifier.size(16.dp))
         NavigationButton(
-            modifier = Modifier,
+            modifier = Modifier.buildTestTag("counter"),
             text = "Counter",
             color = Color.Red,
             onClick = onCounterClick,
         )
         Spacer(modifier = Modifier.size(16.dp))
         NavigationButton(
-            modifier = Modifier,
+            modifier = Modifier.buildTestTag("crypto_list"),
             text = "Todo",
             color = Color.Yellow,
             onClick = onCryptoListClick)

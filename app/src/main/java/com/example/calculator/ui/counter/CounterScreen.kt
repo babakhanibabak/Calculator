@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.calculator.ui.common.buildTestTag
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
@@ -64,7 +65,7 @@ private fun CounterScreenContent(
         Operators(onPlusClick = onPlusClick, onMinusClick = onMinusClick)
         Spacer(modifier = Modifier.size(32.dp))
         OperationButton(
-            modifier = Modifier,
+            modifier = Modifier.buildTestTag("reset_button"),
             onClick = onResetClick,
             text = "Reset",
             fontSize = 22.sp,
@@ -83,10 +84,11 @@ fun Result(
             .size(120.dp)
             .border(2.dp, Color.Black, CircleShape)
             .clip(CircleShape)
-            .background(Color.Yellow),
+            .background(Color.Yellow)
+            .buildTestTag("result_circle_box"),
     ) {
         Text(
-            modifier = Modifier.align(Alignment.Center),
+            modifier = Modifier.align(Alignment.Center).buildTestTag("result_text"),
             text = uiState.toString(),
             fontWeight = FontWeight.Bold,
             fontSize = 48.sp,
@@ -106,7 +108,7 @@ fun Operators(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         OperationButton(
-            modifier = Modifier.weight(0.5f),
+            modifier = Modifier.weight(0.5f).buildTestTag("plus_button"),
             onClick = onPlusClick,
             text = "+",
             fontSize = 30.sp,
@@ -114,7 +116,7 @@ fun Operators(
         )
         Spacer(modifier = Modifier.size(32.dp))
         OperationButton(
-            modifier = Modifier.weight(0.5f),
+            modifier = Modifier.weight(0.5f).buildTestTag("minus_button"),
             onClick = onMinusClick,
             text = "–",
             fontSize = 30.sp,
