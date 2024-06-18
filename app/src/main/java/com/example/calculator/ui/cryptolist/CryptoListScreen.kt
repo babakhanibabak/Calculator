@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -142,7 +143,7 @@ fun CoinItem(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Image(
                 modifier = Modifier.size(64.dp),
@@ -150,9 +151,16 @@ fun CoinItem(
                 painter = painterResource(id = model.photo),
                 contentDescription = "",
             )
-            Text(text = model.name, fontSize = 30.sp, modifier = Modifier.align(Alignment.CenterVertically))
-            Text(text = model.id,fontSize = 25.sp, modifier = Modifier.align(Alignment.CenterVertically))
-            Text(text = model.symbol,fontSize = 25.sp, modifier = Modifier.align(Alignment.CenterVertically))
+            Spacer(modifier = Modifier.size(10.dp))
+            Text(text = model.name, fontSize = 30.sp, modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(0.12f))
+            Text(text = model.id,fontSize = 25.sp, modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(0.08f))
+            Text(text = model.symbol,fontSize = 25.sp, modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(end = 8.dp))
 
         }
     }

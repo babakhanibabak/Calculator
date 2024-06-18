@@ -70,8 +70,8 @@ fun NavigationScreenContent(
         Spacer(modifier = Modifier.size(16.dp))
         NavigationButton(
             modifier = Modifier,
-            text = "Todo",
-            color = Color.Yellow,
+            text = "Crypto Currency",
+            color = Color.LightGray,
             onClick = onCryptoListClick)
     }
 }
