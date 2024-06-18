@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,29 +23,38 @@ import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
 fun CoinDetailScreen(
-    viewModel: CoinDetailViewModel = hiltViewModel()
+    viewModel: CoinDetailViewModel = hiltViewModel(),
+    onBackClick: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    CoinDetailScreenContent(uiState = uiState)
+    CoinDetailScreenContent(uiState = uiState, onBackClick = onBackClick)
 }
 
 @Composable
 private fun CoinDetailScreenContent(
     modifier: Modifier = Modifier,
     uiState: CoinDetailScreenState,
+    onBackClick: () -> Unit
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
-        when {
-            uiState.isLoading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = { MyAppBar(title = "Coin Detail") { onBackClick() } },
+    ) { paddingValues ->
+        Box(modifier = modifier
+            .fillMaxSize()
+            .padding(paddingValues)) {
+            when {
+                uiState.isLoading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
 
-            uiState.error.isNotEmpty() -> {}
-            else -> {
-                CoinDetail(uiState = uiState)
+                uiState.error.isNotEmpty() -> {}
+                else -> {
+                    CoinDetail(uiState = uiState)
+                }
             }
         }
     }
@@ -58,36 +66,38 @@ fun CoinDetail(
     modifier: Modifier = Modifier,
     uiState: CoinDetailScreenState,
 ) {
-    Scaffold(
-        topBar = { MyAppBar(title = "Coin Detail") },
-        content = { padding ->
-            Surface(modifier = modifier.padding(padding)) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
-                    uiState.showDetailData?.let { data ->
-                        // TODO: Design
-                        Text(
-                            text = data.message.orEmpty(),
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
-                        Spacer(modifier = Modifier.size(10.dp))
-                        Text(
-                            text = data.description.orEmpty(),
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
-                        Spacer(modifier = Modifier.size(10.dp))
-                        Text(text = data.firstPrice.toString())
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        uiState.showDetailData?.let { data ->
+            // TODO: Design
+            Text(
+                text = data.message.orEmpty(),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            Spacer(modifier = Modifier.size(10.dp))
 
-                        Spacer(modifier = Modifier.size(10.dp))
-                        Text(text = data.lastPrice.toString())
-                    }
-                }
-            }
+            Text(
+                text = data.description.orEmpty(),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            Spacer(modifier = Modifier.size(10.dp))
+
+            Text(
+                text = data.firstPrice.toString(),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+
+            Spacer(modifier = Modifier.size(10.dp))
+            Text(
+                text = data.lastPrice.toString(),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
-    )
+    }
 }
+
 
 @Preview
 @Composable
@@ -102,6 +112,7 @@ private fun CoinDetailScreenPreview() {
                     lastPrice = 50,
                 )
             ),
+            onBackClick = {}
         )
     }
 }

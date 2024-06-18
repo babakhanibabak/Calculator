@@ -65,7 +65,9 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("CoinDetailScreen/{coinId}") {
-                        CoinDetailScreen()
+                        CoinDetailScreen(
+                            onBackClick = {navController.popBackStack()}
+                        )
                     }
                 }
             }
