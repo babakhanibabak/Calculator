@@ -6,7 +6,7 @@ data class CoinDetailData(
     val message:String,
     val description:String,
     val firstPrice:Int,
-    val lastPrice: Int
+    val lastPrice: Int,
 )
 
 fun mapToDomainModel(dto: CoinDetailData): CoinDetailModel {

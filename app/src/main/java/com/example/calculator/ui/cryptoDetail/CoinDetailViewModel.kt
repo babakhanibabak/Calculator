@@ -1,5 +1,6 @@
 package com.example.calculator.ui.cryptoDetail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calculator.domain.model.CoinDetailModel
@@ -14,8 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
     private val coinRepository: CoinRepository,
-    private val mapper: CoinDetailScreenMapper
+    private val mapper: CoinDetailScreenMapper,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+
+    private val coinId by lazy { savedStateHandle.get<String>("coinId") ?: "" }
+
     private val _uiState = MutableStateFlow(CoinDetailScreenState())
     val uiState = _uiState.asStateFlow()
 
@@ -27,17 +32,12 @@ class CoinDetailViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             runCatching {
-                coinRepository.getCoinDetail(coinId = "")
-            }.onSuccess {
+                coinRepository.getCoinDetail(coinId = coinId)
+            }.onSuccess { model ->
                 _uiState.update {
                     it.copy(
                         isLoading = false,
-                        showDetailData = mapper.mapToUiModel(
-                            model = CoinDetailModel(
-                                firstPrice = 0,
-                                lastPrice = 0
-                            )
-                        )
+                        showDetailData = mapper.mapToUiModel(model = model),
                     )
                 }
             }.onFailure { error ->

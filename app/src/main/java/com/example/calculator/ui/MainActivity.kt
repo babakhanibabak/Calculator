@@ -56,12 +56,15 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("CryptoListScreen") {
                         CryptoListScreen(
-                            onItemClick = {
-                                navController.navigate("CoinDetailScreen")
+                            onItemClick = { coinId ->
+                                navController.navigate("CoinDetailScreen/$coinId")
+                            },
+                            onBackClick = {
+                                navController.popBackStack()
                             }
                         )
                     }
-                    composable("CoinDetailScreen") {
+                    composable("CoinDetailScreen/{coinId}") {
                         CoinDetailScreen()
                     }
                 }

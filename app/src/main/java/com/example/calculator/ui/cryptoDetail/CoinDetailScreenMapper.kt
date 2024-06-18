@@ -4,12 +4,12 @@ import com.example.calculator.domain.model.CoinDetailModel
 import javax.inject.Inject
 
 class CoinDetailScreenMapper @Inject constructor() {
-fun mapToUiModel(model: CoinDetailModel): CoinDetailUiModel {
-    return  CoinDetailUiModel(
-        message = model.message,
-        description = model.description,
-        firstPrice = model.firstPrice,
-        lastPrice = model.lastPrice
-    )
-}
+    fun mapToUiModel(model: CoinDetailModel): CoinDetailUiModel {
+        return CoinDetailUiModel(
+            message = model.message,
+            description = model.description,
+            firstPrice = model.firstPrice,
+            lastPrice = model.lastPrice
+        )
+    }
 }

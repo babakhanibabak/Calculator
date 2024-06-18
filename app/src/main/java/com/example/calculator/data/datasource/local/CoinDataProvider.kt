@@ -7,23 +7,63 @@ import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class CoinDataProvider @Inject constructor() {
+
     suspend fun getCoinsList(): List<CoinListItemModel> {
-        delay(3000)
-        return listOf(
-            CoinListItemModel("1", "Bitcoin", "BTC", 1, photo = R.drawable.bit),
-            CoinListItemModel("2", "tether", "tet", 1, photo = R.drawable.tether),
-            CoinListItemModel("3", "ethereum", "eth", 1, photo = R.drawable.ethereum),
-            CoinListItemModel("4", "usdc", "usd", 1, photo = R.drawable.usdc),
-        )
+        delay(1000)
+        return coinList
     }
 
     suspend fun getCoinDetail(coinId: String): CoinDetailData {
-        delay(2000)
+        delay(1000)
+        val coin = coinList.find { it.id == coinId }
         return CoinDetailData(
-            message = "this is Bitcoin crypto currency",
-            description = "Bitcoin is now first crypto currency",
-            firstPrice = 10,
-            lastPrice = 64000,
+            message = coin?.message.orEmpty(),
+            description = coin?.description.orEmpty(),
+            firstPrice = coin?.firstPrice ?: 0,
+            lastPrice = coin?.lastPrice ?: 0,
         )
     }
+
+    private val coinList = listOf(
+        CoinListItemModel(
+            id = "1",
+            name = "Bitcoin",
+            symbol = "BTC",
+            rank = 1,
+            photo = R.drawable.bit,
+            message = "Bitcoin Message",
+            description = "Bitcoin Description",
+            firstPrice = 10,
+            lastPrice = 64000,
+        ),
+        CoinListItemModel(
+            id = "2",
+            name = "Tether",
+            symbol = "tet",
+            rank = 1,
+            photo = R.drawable.tether,
+            message = "Tether Message",
+            description = "Tether Description",
+            firstPrice = 10,
+            lastPrice = 3000,
+        ),
+        CoinListItemModel(
+            id = "3",
+            name = "Ethereum",
+            symbol = "eth",
+            rank = 1,
+            photo = R.drawable.ethereum,
+            message = "Ethereum Message",
+            description = "Ethereum Description"
+        ),
+        CoinListItemModel(
+            id = "4",
+            name = "USDT",
+            symbol = "usdt",
+            rank = 1,
+            photo = R.drawable.usdc,
+            message = "USDT Message",
+            description = "USDT Description"
+        ),
+    )
 }

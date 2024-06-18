@@ -5,5 +5,6 @@ import com.example.calculator.domain.model.CoinListItemModel
 
 interface CoinRepository {
     suspend fun getCoinsList(): List<CoinListItemModel>
+
     suspend fun getCoinDetail(coinId: String): CoinDetailModel
 }
