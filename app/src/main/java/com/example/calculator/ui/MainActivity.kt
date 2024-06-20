@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                         CalculatorScreen()
                     }
                     composable("CounterScreen") {
-                        CounterScreen()
+                        CounterScreen(onBackClick ={navController.popBackStack()})
                     }
                     composable("CryptoListScreen") {
                         CryptoListScreen(
