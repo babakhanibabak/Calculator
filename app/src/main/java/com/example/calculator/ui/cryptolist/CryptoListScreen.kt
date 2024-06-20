@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -170,11 +171,16 @@ fun CoinItem(
                     text = model.symbol,
                     fontSize = 25.sp,
                 )
-                Text(
-                    modifier = Modifier,
-                    text = model.rank.toString(),
-                    fontSize = 25.sp,
-                )
+                Spacer(modifier = Modifier.size(10.dp))
+                Row {
+                    Text(text = "Rank =", color = Color.LightGray, fontSize = 20.sp)
+                    Spacer(modifier = Modifier.size(7.dp))
+                    Text(
+                        modifier = Modifier,
+                        text = model.rank.toString(),
+                        fontSize = 25.sp,
+                    )
+                }
             }
         }
     }
