@@ -76,14 +76,16 @@ fun CoinDetail(
     uiState: CoinDetailScreenState,
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().padding(top = 15.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         uiState.showDetailData?.let { data ->
             // TODO: Design
              Row(modifier=Modifier.align(Alignment.CenterHorizontally)) {
-                 CircleImage(modifier = Modifier,
-                     imageId =R.drawable.bit)
+                 data.photo?.let {
+                     CircleImage(modifier = Modifier,
+                         imageId = it)
+                 }
              }
             Spacer(modifier = Modifier.size(10.dp))
            Row (
