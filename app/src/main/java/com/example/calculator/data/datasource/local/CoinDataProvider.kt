@@ -21,6 +21,8 @@ class CoinDataProvider @Inject constructor() {
             description = coin?.description.orEmpty(),
             firstPrice = coin?.firstPrice ?: 0,
             lastPrice = coin?.lastPrice ?: 0,
+            photo = coin?.photo ?:0
+
         )
     }
 
@@ -40,7 +42,7 @@ class CoinDataProvider @Inject constructor() {
             id = "2",
             name = "Tether",
             symbol = "tet",
-            rank = 1,
+            rank = 2,
             photo = R.drawable.tether,
             message = "Tether Message",
             description = "Tether Description",
@@ -51,16 +53,16 @@ class CoinDataProvider @Inject constructor() {
             id = "3",
             name = "Ethereum",
             symbol = "eth",
-            rank = 1,
+            rank = 3,
             photo = R.drawable.ethereum,
             message = "Ethereum Message",
             description = "Ethereum Description"
         ),
         CoinListItemModel(
             id = "4",
-            name = "USDT",
-            symbol = "usdt",
-            rank = 1,
+            name = "USDC",
+            symbol = "usdc",
+            rank = 4,
             photo = R.drawable.usdc,
             message = "USDT Message",
             description = "USDT Description"

@@ -9,7 +9,8 @@ class CoinDetailScreenMapper @Inject constructor() {
             message = model.message,
             description = model.description,
             firstPrice = model.firstPrice,
-            lastPrice = model.lastPrice
+            lastPrice = model.lastPrice,
+            photo = model.photo
         )
     }
 }
