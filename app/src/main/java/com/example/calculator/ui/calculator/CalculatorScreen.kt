@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.calculator.ui.common.buildTestTag
+import com.example.calculator.ui.components.MyAppBar
 import com.example.calculator.ui.theme.CalculatorTheme
 import com.example.calculator.ui.theme.operatorButtonColor
 import com.example.calculator.ui.theme.resultBackgroundColor
@@ -36,6 +37,7 @@ import com.example.calculator.ui.theme.resultBackgroundColor
 @Composable
 fun CalculatorScreen(
     viewModel: CalculatorViewModel = hiltViewModel(),
+    onBackClick: () -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
@@ -46,6 +48,7 @@ fun CalculatorScreen(
         onOperatorClick = viewModel::onOperatorClick,
         onClearClick = viewModel::onClearClick,
         onDotClick = viewModel::onDotClick,
+        onBackClick = onBackClick
     )
 }
 
@@ -56,8 +59,11 @@ private fun CalculatorScreenContent(
     onOperatorClick: (CalculatorOperator) -> Unit = {},
     onDotClick: () -> Unit = {},
     onClearClick: () -> Unit = {},
+    onBackClick: () -> Unit={}
 ) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
+    Scaffold(modifier = Modifier.fillMaxSize(),
+        topBar = { MyAppBar(title = "Calculator"){onBackClick()} }
+        ) { paddingValues ->
         Column(
             modifier = Modifier.padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(.2.dp)

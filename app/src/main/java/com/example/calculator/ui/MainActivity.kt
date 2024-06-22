@@ -49,10 +49,10 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("CalculatorScreen") {
-                        CalculatorScreen()
+                        CalculatorScreen(onBackClick = { navController.popBackStack() })
                     }
                     composable("CounterScreen") {
-                        CounterScreen(onBackClick ={navController.popBackStack()})
+                        CounterScreen(onBackClick = { navController.popBackStack() })
                     }
                     composable("CryptoListScreen") {
                         CryptoListScreen(
@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("CoinDetailScreen/{coinId}") {
                         CoinDetailScreen(
-                            onBackClick = {navController.popBackStack()}
+                            onBackClick = { navController.popBackStack() }
                         )
                     }
                 }

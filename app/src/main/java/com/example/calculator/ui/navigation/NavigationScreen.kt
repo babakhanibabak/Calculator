@@ -30,7 +30,7 @@ fun NavigationScreen(
         onBasicCalculatorClick = onBasicCalculatorClick,
         onCalculatorClick = onCalculatorClick,
         onCounterClick = onCounterClick,
-        onCryptoListClick= onCryptoListClick
+        onCryptoListClick = onCryptoListClick
     )
 }
 
@@ -73,7 +73,8 @@ fun NavigationScreenContent(
             modifier = Modifier.buildTestTag("crypto_list"),
             text = "Crypto Currency",
             color = Color.LightGray,
-            onClick = onCryptoListClick)
+            onClick = onCryptoListClick
+        )
     }
 }
 
@@ -89,7 +90,7 @@ fun NavigationButton(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
-            containerColor = color,
+            containerColor = color
         )
     ) {
         Text(text = text)
