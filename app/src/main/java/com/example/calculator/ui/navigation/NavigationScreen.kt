@@ -25,12 +25,14 @@ fun NavigationScreen(
     onCalculatorClick: () -> Unit = {},
     onCounterClick: () -> Unit,
     onCryptoListClick: () -> Unit = {},
+    onMenuClick: () -> Unit = {}
 ) {
     NavigationScreenContent(
         onBasicCalculatorClick = onBasicCalculatorClick,
         onCalculatorClick = onCalculatorClick,
         onCounterClick = onCounterClick,
-        onCryptoListClick = onCryptoListClick
+        onCryptoListClick = onCryptoListClick,
+        onMenuClick = onMenuClick
     )
 }
 
@@ -40,6 +42,7 @@ fun NavigationScreenContent(
     onCalculatorClick: () -> Unit = {},
     onCounterClick: () -> Unit = {},
     onCryptoListClick: () -> Unit = {},
+    onMenuClick: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -74,6 +77,13 @@ fun NavigationScreenContent(
             text = "Crypto Currency",
             color = Color.LightGray,
             onClick = onCryptoListClick
+        )
+        Spacer(modifier = Modifier.size(16.dp))
+        NavigationButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Menu",
+            color = Color.Cyan,
+            onClick = onMenuClick
         )
     }
 }
