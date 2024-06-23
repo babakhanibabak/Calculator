@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.calculator.ui.Menu.MenuScreen
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
 import com.example.calculator.ui.counter.CounterScreen
@@ -38,6 +39,9 @@ class MainActivity : ComponentActivity() {
                             },
                             onCryptoListClick = {
                                 navController.navigate("CryptoListScreen")
+                            },
+                            onMenuClick = {
+                                navController.navigate("MenuScreen")
                             }
                         )
                     }
@@ -67,6 +71,11 @@ class MainActivity : ComponentActivity() {
                     composable("CoinDetailScreen/{coinId}") {
                         CoinDetailScreen(
                             onBackClick = { navController.popBackStack() }
+                        )
+                    }
+                    composable("MenuScreen"){
+                        MenuScreen(
+                            onBackClick = {navController.popBackStack()}
                         )
                     }
                 }
