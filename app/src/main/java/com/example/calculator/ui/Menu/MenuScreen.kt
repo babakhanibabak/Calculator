@@ -1,11 +1,13 @@
 package com.example.calculator.ui.menu
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
@@ -64,7 +66,16 @@ fun MenuScreenContent(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                Text(text = "Drawer Title", modifier = Modifier.padding(16.dp))
+                Row (modifier = Modifier.fillMaxWidth()){
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                    Text(text = "Drawer Title", modifier = Modifier.padding(16.dp))
+                }
+
                 HorizontalDivider()
                 NavigationDrawerItem(
                     icon = {Icons.Filled.Close} ,
