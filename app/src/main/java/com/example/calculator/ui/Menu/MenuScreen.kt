@@ -1,4 +1,4 @@
-package com.example.calculator.ui.Menu
+package com.example.calculator.ui.menu
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -66,7 +67,8 @@ fun MenuScreenContent(
                 Text(text = "Drawer Title", modifier = Modifier.padding(16.dp))
                 HorizontalDivider()
                 NavigationDrawerItem(
-                    label = { "Drawer Item" },
+                    icon = {Icons.Filled.Close} ,
+                    label = { Text(text = "Drawer Item") },
                     selected = false,
                     onClick = { /*TODO*/ })
 

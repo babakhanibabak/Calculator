@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.calculator.ui.Menu.MenuScreen
+import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
 import com.example.calculator.ui.counter.CounterScreen
