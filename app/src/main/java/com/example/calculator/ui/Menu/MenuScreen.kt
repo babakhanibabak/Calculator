@@ -73,7 +73,9 @@ fun MenuScreenContent(
                             contentDescription = "Back"
                         )
                     }
-                    Text(text = "Drawer Title", modifier = Modifier.padding(16.dp))
+                    Text(text = "Drawer Title", modifier = Modifier.padding(16.dp),
+                        textAlign = TextAlign.Center
+                        )
                 }
 
                 HorizontalDivider()
