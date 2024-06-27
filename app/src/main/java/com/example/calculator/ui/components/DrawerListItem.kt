@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.rounded.ShoppingCart
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,18 +17,18 @@ import androidx.compose.ui.unit.dp
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
-fun DrawerList(modifier: Modifier = Modifier) {
+fun DrawerList() {
 
     NavigationDrawerItem(
-        icon = { Icons.Rounded.ShoppingCart },
+        icon = { Icon(imageVector = Icons.Rounded.ShoppingCart, contentDescription = "") },
         label = { Text(text = "Drawer Item") },
         selected = true,
         onClick = { /*TODO*/ })
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
-        icon = { Icons.Filled.FavoriteBorder },
+        icon = { Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
         label = { Text(text = "Drawer Item", textAlign = TextAlign.End) },
-        badge = { Icons.Filled.FavoriteBorder},
+        badge = { Icon(imageVector = Icons.Filled.Home, contentDescription = "") },
         selected = true,
         onClick = { /*TODO*/ })
 }
@@ -34,7 +36,7 @@ fun DrawerList(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun DrawerListPreview() {
-    CalculatorTheme{
+    CalculatorTheme {
         DrawerList()
     }
 }

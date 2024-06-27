@@ -137,7 +137,7 @@ fun CoinDetail(
                     color = Color.Gray)
                 Spacer(modifier = Modifier.size(25.dp))
                 Text(
-                    text = data.firstPrice.toString(),
+                    text = "${data.firstPrice.toString()} $",
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -148,7 +148,7 @@ fun CoinDetail(
                     color = Color.Gray)
                 Spacer(modifier = Modifier.size(25.dp))
                 Text(
-                    text = data.lastPrice.toString(),
+                    text = "${data.lastPrice.toString()} $",
                     modifier = Modifier.fillMaxWidth()
                 )
             }
