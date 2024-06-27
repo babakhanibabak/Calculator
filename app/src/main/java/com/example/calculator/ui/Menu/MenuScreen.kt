@@ -1,18 +1,20 @@
 package com.example.calculator.ui.menu
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults.windowInsets
 import androidx.compose.material3.DrawerValue
@@ -26,7 +28,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -141,13 +142,32 @@ fun MenuScreenContent(
                 )
             },
             bottomBar = {
-                BottomAppBar(windowInsets = windowInsets,
-                    contentColor = contentColorFor(backgroundColor = Color.Blue)) {
+                BottomAppBar(
+                    windowInsets = windowInsets,
+                    containerColor = Color.Blue.copy(0.5f),
+                ) {
                     CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Icon(Icons.Filled.FavoriteBorder, contentDescription = "Favorites")
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            IconButton(onClick = { /*TODO*/ }) {
+                                Icon(Icons.Filled.Favorite, contentDescription = "Favorites")
+                            }
+
+                            IconButton(onClick = { /*TODO*/ }) {
+                                Icon(Icons.Filled.DateRange, contentDescription = "date range")
+                            }
+
+                            IconButton(onClick = { /*TODO*/ }) {
+                                Icon(Icons.Filled.Place, contentDescription = "date range")
+                            }
+
+                            IconButton(onClick = { /*TODO*/ }) {
+                                Icon(Icons.Filled.Email, contentDescription = "Favorites")
+                            }
                         }
-                        Spacer(modifier = Modifier.size(20.dp))
+
                     }
                 }
             }) { paddingValues ->
