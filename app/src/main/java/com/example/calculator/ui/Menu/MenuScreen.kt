@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.BottomAppBarDefaults.windowInsets
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -68,6 +69,7 @@ fun MenuScreenContent(
 
     ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
 
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -145,13 +147,18 @@ fun MenuScreenContent(
                 BottomAppBar(
                     windowInsets = windowInsets,
                     containerColor = Color.Blue.copy(0.5f),
+                    scrollBehavior = bottomScrollBehavior
                 ) {
                     CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick = {
+                                scope.launch {
+
+                                }
+                            }) {
                                 Icon(Icons.Filled.Favorite, contentDescription = "Favorites")
                             }
 
@@ -167,7 +174,6 @@ fun MenuScreenContent(
                                 Icon(Icons.Filled.Email, contentDescription = "Favorites")
                             }
                         }
-
                     }
                 }
             }) { paddingValues ->
