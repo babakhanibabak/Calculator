@@ -1,11 +1,14 @@
 package com.example.calculator.ui.menu
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -38,6 +41,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.wear.compose.material.ContentAlpha
 import androidx.wear.compose.material.LocalContentAlpha
+import com.example.calculator.R
 import com.example.calculator.ui.components.DrawerList
 import com.example.calculator.ui.theme.CalculatorTheme
 import kotlinx.coroutines.launch
@@ -53,12 +58,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun MenuScreen(
     viewModel: MenuScreenViewModel = hiltViewModel(),
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+onFavoriteClick: ()->Unit
+    ) {
+    val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
-) {
-    val uiState by viewModel.uiState.collectAsState()
-
-    MenuScreenContent(onBackClick = onBackClick)
+    MenuScreenContent(onBackClick = onBackClick,
+        uiState = uiState,
+        onFavoriteClick = onFavoriteClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,8 +73,9 @@ fun MenuScreen(
 fun MenuScreenContent(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit = {},
-
-    ) {
+    uiState: MenuScreenState,
+    onFavoriteClick: () -> Unit = {}
+) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
 
@@ -154,11 +162,7 @@ fun MenuScreenContent(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            IconButton(onClick = {
-                                scope.launch {
-
-                                }
-                            }) {
+                            IconButton(onClick = onFavoriteClick) {
                                 Icon(Icons.Filled.Favorite, contentDescription = "Favorites")
                             }
 
@@ -186,11 +190,25 @@ fun MenuScreenContent(
 
 }
 
+@Composable
+fun FavoriteScreen(modifier: Modifier = Modifier) {
+Column(modifier=modifier.fillMaxSize()) {
+Row {
+    Image(painter = painterResource(id = R.drawable.bit),
+        contentDescription = "")
+}
+    Spacer(modifier = Modifier.size(10.dp))
+    Row {
+    Image(painter = painterResource(id = R.drawable.bit),
+        contentDescription = "")
+}
+}
+}
 
 @Preview
 @Composable
 private fun AppBarScreenContentPreview() {
     CalculatorTheme {
-        MenuScreenContent()
+        MenuScreenContent(uiState = MenuScreenState())
     }
 }
