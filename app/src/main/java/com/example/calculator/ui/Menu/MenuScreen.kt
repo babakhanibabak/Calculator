@@ -182,6 +182,7 @@ fun MenuScreenContent(
                 }
             }) { paddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
+                Text(text = "Content")
 
             }
 
