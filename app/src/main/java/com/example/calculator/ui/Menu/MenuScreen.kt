@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
@@ -159,9 +160,10 @@ fun MenuScreenContent(
                 FloatingActionButton(modifier = Modifier.offset(y=4.dp),
                     onClick = { /*TODO*/ },
                     containerColor =BottomAppBarDefaults.bottomAppBarFabColor,
-                    elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                    elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
+                    shape = FloatingActionButtonDefaults.largeShape
                     ) {
-
+Icon(imageVector = Icons.Filled.Add, contentDescription = "")
                 }
             },
             bottomBar = {
