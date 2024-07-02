@@ -64,13 +64,15 @@ import kotlinx.coroutines.launch
 fun MenuScreen(
     viewModel: MenuScreenViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
-onFavoriteClick: ()->Unit
-    ) {
+    onFavoriteClick: () -> Unit
+) {
     val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
-    MenuScreenContent(onBackClick = onBackClick,
+    MenuScreenContent(
+        onBackClick = onBackClick,
         uiState = uiState,
-        onFavoriteClick = onFavoriteClick)
+        onFavoriteClick = onFavoriteClick
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -157,13 +159,15 @@ fun MenuScreenContent(
                 )
             },
             floatingActionButton = {
-                FloatingActionButton(modifier = Modifier.offset(y=4.dp),
+                FloatingActionButton(
+                    modifier = Modifier.offset(y = 4.dp),
                     onClick = { /*TODO*/ },
-                    containerColor =BottomAppBarDefaults.bottomAppBarFabColor,
+                    containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                    contentColor = Color.Blue,
                     elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
                     shape = FloatingActionButtonDefaults.largeShape
-                    ) {
-Icon(imageVector = Icons.Filled.Add, contentDescription = "")
+                ) {
+                    Icon(imageVector = Icons.Filled.Add, contentDescription = "")
                 }
             },
             bottomBar = {
@@ -208,17 +212,21 @@ Icon(imageVector = Icons.Filled.Add, contentDescription = "")
 
 @Composable
 fun FavoriteScreen(modifier: Modifier = Modifier) {
-Column(modifier=modifier.fillMaxSize()) {
-Row {
-    Image(painter = painterResource(id = R.drawable.bit),
-        contentDescription = "")
-}
-    Spacer(modifier = Modifier.size(10.dp))
-    Row {
-    Image(painter = painterResource(id = R.drawable.bit),
-        contentDescription = "")
-}
-}
+    Column(modifier = modifier.fillMaxSize()) {
+        Row {
+            Image(
+                painter = painterResource(id = R.drawable.bit),
+                contentDescription = ""
+            )
+        }
+        Spacer(modifier = Modifier.size(10.dp))
+        Row {
+            Image(
+                painter = painterResource(id = R.drawable.bit),
+                contentDescription = ""
+            )
+        }
+    }
 }
 
 @Preview
