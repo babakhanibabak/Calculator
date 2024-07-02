@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Scaffold
@@ -64,18 +65,19 @@ private fun CounterScreenContent(
     Scaffold(modifier = modifier
         .fillMaxSize(),
         topBar = { MyAppBar(title = "Number Counter") { onBackClick() } },
-    floatingActionButton = {
-        FloatingActionButton(
-            onClick = onResetClick,
-            containerColor = Color.Magenta,
-            contentColor = Color.Gray,
-            shape = CircleShape,
-            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
-            modifier = Modifier.buildTestTag("fab")
-        ){
-         Text(text = "Reset")
+        floatingActionButtonPosition = FabPosition.Center,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onResetClick,
+                containerColor = Color.Magenta,
+                contentColor = Color.Gray,
+                shape = CircleShape,
+                elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
+                modifier = Modifier.buildTestTag("fab")
+            ) {
+                Text(text = "Reset")
+            }
         }
-    }
     ) { padding ->
         Column(
             modifier = modifier
