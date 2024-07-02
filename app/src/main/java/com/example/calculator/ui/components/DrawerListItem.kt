@@ -21,13 +21,13 @@ fun DrawerList() {
 
     NavigationDrawerItem(
         icon = { Icon(imageVector = Icons.Rounded.ShoppingCart, contentDescription = "") },
-        label = { Text(text = "Drawer Item") },
+        label = { Text(text = "Shop") },
         selected = true,
         onClick = { /*TODO*/ })
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
         icon = { Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
-        label = { Text(text = "Drawer Item", textAlign = TextAlign.End) },
+        label = { Text(text = "Favorite Item", textAlign = TextAlign.End) },
         badge = { Icon(imageVector = Icons.Filled.Home, contentDescription = "") },
         selected = true,
         onClick = { /*TODO*/ })
