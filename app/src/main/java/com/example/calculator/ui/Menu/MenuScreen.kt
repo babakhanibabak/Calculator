@@ -71,7 +71,7 @@ fun MenuScreen(
     MenuScreenContent(
         onBackClick = onBackClick,
         uiState = uiState,
-        onFavoriteClick = onFavoriteClick
+        onFavoriteClick = onFavoriteClick,
     )
 }
 
