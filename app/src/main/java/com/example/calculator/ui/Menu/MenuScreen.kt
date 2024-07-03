@@ -203,9 +203,11 @@ fun MenuScreenContent(
             Column(modifier = Modifier.padding(paddingValues)) {
                 Text(text = "Content")
 
+
             }
 
         }
+
     }
 
 }
