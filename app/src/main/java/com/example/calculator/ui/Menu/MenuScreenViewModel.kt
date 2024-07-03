@@ -18,7 +18,7 @@ class MenuScreenViewModel @Inject constructor() : ViewModel() {
         _uiState.asStateFlow()
     }
 
-    private fun onFavoriteClick() {
+    fun onFavoriteClick() {
         viewModelScope.launch {
             _uiState.update { it.copy(favorite = true) }
         }
