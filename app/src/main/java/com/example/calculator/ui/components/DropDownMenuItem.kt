@@ -12,13 +12,13 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,33 +29,33 @@ import com.example.calculator.ui.theme.CalculatorTheme
 fun ProductDropDownMenu(
     modifier: Modifier = Modifier,
     items: List<Product>,
-    selectedItem: Product? = null,
+    selectedProductItem: Product? = null,
     onSelectedItem: (Product) -> Unit = {}
 ) {
-    var selectedItem by remember {
-        mutableStateOf(selectedItem)
-    }
+
     var expanded by remember { mutableStateOf(false) }
     Box(modifier = modifier.background(Color.LightGray)) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .clickable { expanded = !expanded }) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+                .fillMaxWidth()
+                .clickable { expanded = !expanded },
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
-                text = "ItemName", modifier = Modifier
-                    .weight(1f)
-                    .padding(8.dp)
+                text = selectedProductItem?.name ?: "product name",
+                modifier = Modifier.weight(1f)
             )
-            IconButton(onClick = { expanded = !expanded }) {
-                Icon(
-                    imageVector =
-                    if (expanded) {
-                        Icons.Default.ArrowDropDown
-                    } else {
-                        Icons.Default.KeyboardArrowUp
-                    },
-                    contentDescription = ""
-                )
-            }
+            Icon(
+                imageVector =
+                if (expanded) {
+                    Icons.Default.ArrowDropDown
+                } else {
+                    Icons.Default.KeyboardArrowUp
+                },
+                contentDescription = ""
+            )
+
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
@@ -67,7 +67,7 @@ fun ProductDropDownMenu(
                         onClick = {
                             expanded = false
                             onSelectedItem(product)
-                            selectedItem = Product(id = "", name = "")
+
                         })
                 }
             }
@@ -98,7 +98,7 @@ private fun DropDownMenuPreview() {
     CalculatorTheme {
         ProductDropDownMenu(
             items = ProductDataProvider.allProducts(),
-            selectedItem = ProductDataProvider.allProducts()[0]
+            selectedProductItem = ProductDataProvider.allProducts()[0]
         )
     }
 }
