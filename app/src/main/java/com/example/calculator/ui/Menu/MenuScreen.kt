@@ -43,7 +43,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -57,6 +60,9 @@ import androidx.wear.compose.material.ContentAlpha
 import androidx.wear.compose.material.LocalContentAlpha
 import com.example.calculator.R
 import com.example.calculator.ui.components.DrawerList
+import com.example.calculator.ui.components.Product
+import com.example.calculator.ui.components.ProductDataProvider
+import com.example.calculator.ui.components.ProductDropDownMenu
 import com.example.calculator.ui.theme.CalculatorTheme
 import kotlinx.coroutines.launch
 
@@ -81,7 +87,8 @@ fun MenuScreenContent(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit = {},
     uiState: MenuScreenState,
-    onFavoriteClick: () -> Unit = {}
+    onFavoriteClick: () -> Unit = {},
+    onSelectedItem:(Product)->Unit={}
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -200,18 +207,28 @@ fun MenuScreenContent(
                     }
                 }
             }) { paddingValues ->
-            Column(modifier = Modifier.padding(paddingValues)) {
-                Text(text = "Content")
+            Column(
+                modifier = Modifier.padding(paddingValues),
+                verticalArrangement = Arrangement.Center,
+            ) {
+var selectedProduct by remember {
+    mutableStateOf("Product")
+}
+                ProductDropDownMenu(modifier = Modifier.padding(
+                    horizontal = 10.dp,
+                    vertical = 50.dp
+                ),
+                    items = ProductDataProvider.allProducts(),
+                    selectedItem = Product("1", "nike"),
+                             onSelectedItem=onSelectedItem,
 
-
+                )
             }
 
         }
 
     }
-
 }
-
 @Composable
 fun FavoriteScreen(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -233,7 +250,7 @@ fun FavoriteScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun AppBarScreenContentPreview() {
+ fun MenuScreenContentPreview() {
     CalculatorTheme {
         MenuScreenContent(uiState = MenuScreenState())
     }
