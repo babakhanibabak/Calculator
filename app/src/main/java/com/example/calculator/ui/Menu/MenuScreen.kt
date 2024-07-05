@@ -27,7 +27,6 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
-import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -88,7 +87,6 @@ fun MenuScreenContent(
     onBackClick: () -> Unit = {},
     uiState: MenuScreenState,
     onFavoriteClick: () -> Unit = {},
-    onSelectedItem:(Product)->Unit={}
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -211,24 +209,26 @@ fun MenuScreenContent(
                 modifier = Modifier.padding(paddingValues),
                 verticalArrangement = Arrangement.Center,
             ) {
-var selectedProduct by remember {
-    mutableStateOf("Product")
-}
-                ProductDropDownMenu(modifier = Modifier.padding(
-                    horizontal = 10.dp,
-                    vertical = 50.dp
-                ),
+                var selectedProductItem by remember {
+                    mutableStateOf<Product?>(null)
+                }
+                ProductDropDownMenu(
+                    modifier = Modifier.padding(
+                        horizontal = 10.dp,
+                        vertical = 50.dp
+                    ),
                     items = ProductDataProvider.allProducts(),
-                    selectedItem = Product("1", "nike"),
-                             onSelectedItem=onSelectedItem,
+                    selectedProductItem = selectedProductItem,
+                    onSelectedItem = {selectedProductItem=it},
 
-                )
+                    )
             }
 
         }
 
     }
 }
+
 @Composable
 fun FavoriteScreen(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -250,7 +250,7 @@ fun FavoriteScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
- fun MenuScreenContentPreview() {
+fun MenuScreenContentPreview() {
     CalculatorTheme {
         MenuScreenContent(uiState = MenuScreenState())
     }
