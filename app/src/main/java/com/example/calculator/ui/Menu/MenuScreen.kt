@@ -219,7 +219,7 @@ fun MenuScreenContent(
                     ),
                     items = ProductDataProvider.allProducts(),
                     selectedProductItem = selectedProductItem,
-                    onSelectedItem = {selectedProductItem=it},
+                    onSelectedItem = { selectedProductItem = it },
 
                     )
             }
@@ -230,21 +230,23 @@ fun MenuScreenContent(
 }
 
 @Composable
-fun FavoriteScreen(modifier: Modifier = Modifier) {
+fun FavoriteScreen(
+    modifier: Modifier = Modifier,
+) {
+
     Column(modifier = modifier.fillMaxSize()) {
-        Row {
-            Image(
-                painter = painterResource(id = R.drawable.bit),
-                contentDescription = ""
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.bit),
+            contentDescription = ""
+        )
+
         Spacer(modifier = Modifier.size(10.dp))
-        Row {
-            Image(
-                painter = painterResource(id = R.drawable.bit),
-                contentDescription = ""
-            )
-        }
+
+        Image(
+            painter = painterResource(id = R.drawable.bit),
+            contentDescription = ""
+        )
+
     }
 }
 
