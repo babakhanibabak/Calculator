@@ -84,11 +84,11 @@ data class Product(
 
 object ProductDataProvider {
     fun allProducts() = arrayListOf(
-        Product(id = "1", "nike"),
-        Product(id = "2", name = "zara"),
-        Product("3", "LccWiki"),
-        Product("4", "eco"),
-        Product("5", "JosefSiebel")
+        Product(id = "1", "NIKE"),
+        Product(id = "2", name = "ZARA"),
+        Product("3", "LCC WIKI"),
+        Product("4", "ECO"),
+        Product("5", "JOSEF SIEBEL")
     )
 }
 
