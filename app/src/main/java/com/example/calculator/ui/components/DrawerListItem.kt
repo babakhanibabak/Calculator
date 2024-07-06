@@ -3,8 +3,10 @@ package com.example.calculator.ui.components
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationDrawerItem
@@ -21,15 +23,21 @@ fun DrawerList() {
 
     NavigationDrawerItem(
         icon = { Icon(imageVector = Icons.Rounded.ShoppingCart, contentDescription = "") },
-        label = { Text(text = "Shop") },
+        label = { Text(text = "Shopping") },
         selected = true,
         onClick = { /*TODO*/ })
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
         icon = { Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
-        label = { Text(text = "Favorite Item", textAlign = TextAlign.End) },
-        badge = { Icon(imageVector = Icons.Filled.Home, contentDescription = "") },
+        label = { Text(text = "Favorite Items", textAlign = TextAlign.End) },
+        badge = { Icon(imageVector = Icons.Filled.Edit, contentDescription = "") },
         selected = true,
+        onClick = { /*TODO*/ })
+    Spacer(modifier = Modifier.size(8.dp))
+    NavigationDrawerItem(
+        icon = {Icon(imageVector = Icons.Rounded.Settings, contentDescription = "") },
+        label = { Text(text = "Settings", textAlign = TextAlign.End) },
+        selected =true ,
         onClick = { /*TODO*/ })
 }
 
