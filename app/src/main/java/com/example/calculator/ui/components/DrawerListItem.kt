@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.ShoppingCart
@@ -44,6 +45,12 @@ fun DrawerList() {
     NavigationDrawerItem(
         icon = {Icon(imageVector = Icons.Rounded.Share, contentDescription = "") },
         label = { Text(text = "Share", textAlign = TextAlign.End) },
+        selected =true ,
+        onClick = { /*TODO*/ })
+    Spacer(modifier = Modifier.size(8.dp))
+    NavigationDrawerItem(
+        icon = {Icon(imageVector = Icons.Rounded.AccountCircle, contentDescription = "") },
+        label = { Text(text = "Account", textAlign = TextAlign.End) },
         selected =true ,
         onClick = { /*TODO*/ })
 
