@@ -1,5 +1,6 @@
 package com.example.calculator.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -30,11 +31,11 @@ fun DrawerList() {
         onClick = { /*TODO*/ })
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
-        icon = { Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
+        icon = { Icon(modifier = Modifier.clickable {  },imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
         label = { Text(text = "Favorite Items", textAlign = TextAlign.End) },
-        badge = { Icon(imageVector = Icons.Filled.Edit, contentDescription = "") },
+        badge = { Icon(modifier = Modifier.clickable {  }, imageVector = Icons.Filled.Edit, contentDescription = "") },
         selected = true,
-        onClick = { /*TODO*/ })
+        onClick = {})
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
         icon = {Icon(imageVector = Icons.Rounded.Settings, contentDescription = "") },
