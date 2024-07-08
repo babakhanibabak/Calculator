@@ -6,12 +6,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +22,9 @@ import androidx.compose.ui.unit.dp
 import com.example.calculator.ui.theme.CalculatorTheme
 
 @Composable
-fun DrawerList() {
+fun DrawerList(
+    onFavoriteBorderClick: ()-> Unit={}
+) {
 
     NavigationDrawerItem(
         icon = { Icon(imageVector = Icons.Rounded.ShoppingCart, contentDescription = "") },
@@ -31,11 +33,14 @@ fun DrawerList() {
         onClick = { /*TODO*/ })
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
-        icon = { Icon(modifier = Modifier.clickable {  },imageVector = Icons.Filled.FavoriteBorder, contentDescription = "") },
+        icon = {
+                Icon(imageVector =Icons.Filled.FavoriteBorder , contentDescription ="" )
+
+        },
         label = { Text(text = "Favorite Items", textAlign = TextAlign.End) },
         badge = { Icon(modifier = Modifier.clickable {  }, imageVector = Icons.Filled.Edit, contentDescription = "") },
         selected = true,
-        onClick = {})
+        onClick = onFavoriteBorderClick)
     Spacer(modifier = Modifier.size(8.dp))
     NavigationDrawerItem(
         icon = {Icon(imageVector = Icons.Rounded.Settings, contentDescription = "") },

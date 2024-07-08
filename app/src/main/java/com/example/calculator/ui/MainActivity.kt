@@ -77,12 +77,16 @@ class MainActivity : ComponentActivity() {
                     composable("MenuScreen") {
                         MenuScreen(
                             onBackClick = { navController.popBackStack() },
-                            onFavoriteClick = { navController.navigate("FavoriteScreen") }
+                            onFavoriteClick = { navController.navigate("FavoriteScreen") },
+                            onFavoriteBorderClick = {navController.navigate("Favorite Items")}
                         )
 
                     }
                     composable("FavoriteScreen") {
                         FavoriteScreen(onBackClick = { navController.popBackStack() })
+                    }
+                    composable("Favorite Items"){
+                        FavoriteScreen (onBackClick = {navController.popBackStack()})
                     }
                 }
             }
