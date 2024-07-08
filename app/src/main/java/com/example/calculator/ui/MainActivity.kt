@@ -7,13 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.basiccalculator.BasicCalculatorScreen
 import com.example.calculator.ui.calculator.CalculatorScreen
+import com.example.calculator.ui.menu.FavoriteScreen
 import com.example.calculator.ui.counter.CounterScreen
 import com.example.calculator.ui.cryptoDetail.CoinDetailScreen
 import com.example.calculator.ui.cryptolist.CryptoListScreen
-import com.example.calculator.ui.menu.FavoriteScreen
+import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme
 import dagger.hilt.android.AndroidEntryPoint
