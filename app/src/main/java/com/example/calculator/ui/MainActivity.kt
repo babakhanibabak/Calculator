@@ -79,9 +79,10 @@ class MainActivity : ComponentActivity() {
                             onBackClick = { navController.popBackStack() },
                             onFavoriteClick = { navController.navigate("FavoriteScreen") }
                         )
-                        composable("FavoriteScreen") {
-                            FavoriteScreen()
-                        }
+
+                    }
+                    composable("FavoriteScreen") {
+                        FavoriteScreen()
                     }
                 }
             }
