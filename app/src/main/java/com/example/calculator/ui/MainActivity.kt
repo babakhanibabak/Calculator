@@ -82,9 +82,10 @@ class MainActivity : ComponentActivity() {
 
                     }
                     composable("FavoriteScreen") {
-                        FavoriteScreen()
+                        FavoriteScreen(onBackClick = { navController.popBackStack() })
                     }
                 }
             }
         }
-    }}
+    }
+}
