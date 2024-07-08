@@ -64,7 +64,8 @@ import kotlinx.coroutines.launch
 fun MenuScreen(
     viewModel: MenuScreenViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
-    onFavoriteClick: () -> Unit
+    onFavoriteClick: () -> Unit,
+    onFavoriteBorderClick:()->Unit
 ) {
     val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
@@ -72,6 +73,7 @@ fun MenuScreen(
         onBackClick = onBackClick,
         uiState = uiState,
         onFavoriteClick = onFavoriteClick,
+        onFavoriteBorderClick=onFavoriteBorderClick
     )
 }
 
@@ -82,6 +84,7 @@ fun MenuScreenContent(
     onBackClick: () -> Unit = {},
     uiState: MenuScreenState,
     onFavoriteClick: () -> Unit = {},
+    onFavoriteBorderClick: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -111,7 +114,7 @@ fun MenuScreenContent(
 
                 HorizontalDivider()
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    DrawerList()
+                    DrawerList(onFavoriteBorderClick = onFavoriteBorderClick)
                 }
 
 
