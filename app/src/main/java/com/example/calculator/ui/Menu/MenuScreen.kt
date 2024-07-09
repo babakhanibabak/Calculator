@@ -65,7 +65,8 @@ fun MenuScreen(
     viewModel: MenuScreenViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
-    onFavoriteBorderClick:()->Unit
+    onFavoriteBorderClick:()->Unit,
+    onDateClick:()->Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
@@ -73,7 +74,8 @@ fun MenuScreen(
         onBackClick = onBackClick,
         uiState = uiState,
         onFavoriteClick = onFavoriteClick,
-        onFavoriteBorderClick=onFavoriteBorderClick
+        onFavoriteBorderClick=onFavoriteBorderClick,
+        onDateClick = onDateClick
     )
 }
 
@@ -85,6 +87,7 @@ fun MenuScreenContent(
     uiState: MenuScreenState,
     onFavoriteClick: () -> Unit = {},
     onFavoriteBorderClick: () -> Unit = {},
+    onDateClick: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -188,7 +191,7 @@ fun MenuScreenContent(
                                 Icon(Icons.Filled.Favorite, contentDescription = "Favorites")
                             }
 
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick = onDateClick) {
                                 Icon(Icons.Filled.DateRange, contentDescription = "date range")
                             }
 

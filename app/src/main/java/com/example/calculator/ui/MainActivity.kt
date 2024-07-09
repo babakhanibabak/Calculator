@@ -13,6 +13,7 @@ import com.example.calculator.ui.menu.FavoriteScreen
 import com.example.calculator.ui.counter.CounterScreen
 import com.example.calculator.ui.cryptoDetail.CoinDetailScreen
 import com.example.calculator.ui.cryptolist.CryptoListScreen
+import com.example.calculator.ui.menu.DateScreen
 import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme
@@ -78,7 +79,8 @@ class MainActivity : ComponentActivity() {
                         MenuScreen(
                             onBackClick = { navController.popBackStack() },
                             onFavoriteClick = { navController.navigate("FavoriteScreen") },
-                            onFavoriteBorderClick = {navController.navigate("Favorite Items")}
+                            onFavoriteBorderClick = {navController.navigate("Favorite Items")},
+                            onDateClick = {navController.navigate("Date Screen")}
                         )
 
                     }
@@ -87,6 +89,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("Favorite Items"){
                         FavoriteScreen (onBackClick = {navController.popBackStack()})
+                    }
+                    composable("Date Screen"){
+                        DateScreen()
                     }
                 }
             }
