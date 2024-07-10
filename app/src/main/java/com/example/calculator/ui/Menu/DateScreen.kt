@@ -29,7 +29,7 @@ fun DateScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DateScreenContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 
 ) {
     val datePickerState = rememberDatePickerState(
