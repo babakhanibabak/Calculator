@@ -62,12 +62,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.googleMap)
 
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.compose.material)
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

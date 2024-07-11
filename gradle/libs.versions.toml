@@ -12,6 +12,8 @@ composeAnimation = "1.6.8"
 hilt = "2.49"
 hilt-navigation-compose = "1.2.0"
 composeMaterial = "1.3.1"
+googleMap="4.3.3"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +35,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+androidx-compose-googleMap={group="com.google.maps.android", name="maps-compose",version.ref="googleMap"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
