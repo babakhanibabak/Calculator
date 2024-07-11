@@ -62,7 +62,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.animation)
+
+    //Map
     implementation(libs.androidx.compose.googleMap)
+    implementation(libs.androidx.compose.location)
+    implementation(libs.androidx.compose.accompanist.permissions)
 
     // Hilt
     implementation(libs.hilt.android)
