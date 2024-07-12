@@ -57,6 +57,7 @@ import com.example.calculator.ui.components.DrawerList
 import com.example.calculator.ui.components.Product
 import com.example.calculator.ui.components.ProductDataProvider
 import com.example.calculator.ui.components.ProductDropDownMenu
+import com.example.calculator.ui.menu.googleMap.MapScreen
 import com.example.calculator.ui.theme.CalculatorTheme
 import kotlinx.coroutines.launch
 
@@ -65,9 +66,9 @@ fun MenuScreen(
     viewModel: MenuScreenViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
-    onFavoriteBorderClick:()->Unit,
-    onDateClick:()->Unit,
-    onMapClick:()->Unit,
+    onFavoriteBorderClick: () -> Unit,
+    onDateClick: () -> Unit,
+    onMapClick: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
@@ -75,7 +76,7 @@ fun MenuScreen(
         onBackClick = onBackClick,
         uiState = uiState,
         onFavoriteClick = onFavoriteClick,
-        onFavoriteBorderClick=onFavoriteBorderClick,
+        onFavoriteBorderClick = onFavoriteBorderClick,
         onDateClick = onDateClick,
         onMapClick = onMapClick
     )
@@ -199,7 +200,7 @@ fun MenuScreenContent(
                             }
 
                             IconButton(onClick = onMapClick) {
-                                Icon(Icons.Filled.Place, contentDescription = "date range")
+                                Icon(Icons.Filled.Place, contentDescription = "google map")
                             }
 
                             IconButton(onClick = { /*TODO*/ }) {
@@ -226,7 +227,7 @@ fun MenuScreenContent(
                     onSelectedItem = { selectedProductItem = it },
 
                     )
-
+                MapScreen()
             }
 
         }
@@ -246,5 +247,8 @@ fun MenuScreenContentPreview() {
 //libs
 //location="21.1.0"
 //accompanist-permissions="0.35.0-alpha"
+
+//
+//implementation 'com.google.android.gms:play-services-maps:18.0.2'
 //androidx-compose-location={group= "com.google.android.gms ",name="play-services-location",version.ref="location"}
 //androidx-compose-accompanist-permissions={group="com.google.accompanist",name="accompanist-permissions",version.ref="accompanist-permissions"}

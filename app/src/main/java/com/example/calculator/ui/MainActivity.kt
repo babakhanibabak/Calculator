@@ -14,7 +14,7 @@ import com.example.calculator.ui.counter.CounterScreen
 import com.example.calculator.ui.cryptoDetail.CoinDetailScreen
 import com.example.calculator.ui.cryptolist.CryptoListScreen
 import com.example.calculator.ui.menu.DateScreen
-import com.example.calculator.ui.menu.MapScreen
+import com.example.calculator.ui.menu.googleMap.MapScreen
 import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.navigation.NavigationScreen
 import com.example.calculator.ui.theme.CalculatorTheme

@@ -65,6 +65,7 @@ dependencies {
 
     //Map
     implementation(libs.androidx.compose.googleMap)
+    implementation(libs.androidx.compose.gms)
 //    implementation(libs.androidx.compose.location)
 //    implementation(libs.androidx.compose.accompanist.permissions)
 
