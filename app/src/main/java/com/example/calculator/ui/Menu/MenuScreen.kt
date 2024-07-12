@@ -67,6 +67,7 @@ fun MenuScreen(
     onFavoriteClick: () -> Unit,
     onFavoriteBorderClick:()->Unit,
     onDateClick:()->Unit,
+    onMapClick:()->Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
@@ -75,7 +76,8 @@ fun MenuScreen(
         uiState = uiState,
         onFavoriteClick = onFavoriteClick,
         onFavoriteBorderClick=onFavoriteBorderClick,
-        onDateClick = onDateClick
+        onDateClick = onDateClick,
+        onMapClick = onMapClick
     )
 }
 
@@ -88,6 +90,7 @@ fun MenuScreenContent(
     onFavoriteClick: () -> Unit = {},
     onFavoriteBorderClick: () -> Unit = {},
     onDateClick: () -> Unit = {},
+    onMapClick: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -195,7 +198,7 @@ fun MenuScreenContent(
                                 Icon(Icons.Filled.DateRange, contentDescription = "date range")
                             }
 
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick = onMapClick) {
                                 Icon(Icons.Filled.Place, contentDescription = "date range")
                             }
 
@@ -223,6 +226,7 @@ fun MenuScreenContent(
                     onSelectedItem = { selectedProductItem = it },
 
                     )
+
             }
 
         }
@@ -238,3 +242,9 @@ fun MenuScreenContentPreview() {
         MenuScreenContent(uiState = MenuScreenState())
     }
 }
+
+//libs
+//location="21.1.0"
+//accompanist-permissions="0.35.0-alpha"
+//androidx-compose-location={group= "com.google.android.gms ",name="play-services-location",version.ref="location"}
+//androidx-compose-accompanist-permissions={group="com.google.accompanist",name="accompanist-permissions",version.ref="accompanist-permissions"}

@@ -65,8 +65,8 @@ dependencies {
 
     //Map
     implementation(libs.androidx.compose.googleMap)
-    implementation(libs.androidx.compose.location)
-    implementation(libs.androidx.compose.accompanist.permissions)
+//    implementation(libs.androidx.compose.location)
+//    implementation(libs.androidx.compose.accompanist.permissions)
 
     // Hilt
     implementation(libs.hilt.android)
