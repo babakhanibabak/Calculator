@@ -37,7 +37,6 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,31 +49,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.wear.compose.material.ContentAlpha
 import androidx.wear.compose.material.LocalContentAlpha
 import com.example.calculator.ui.components.DrawerList
 import com.example.calculator.ui.components.Product
 import com.example.calculator.ui.components.ProductDataProvider
 import com.example.calculator.ui.components.ProductDropDownMenu
-import com.example.calculator.ui.menu.googleMap.MapScreen
 import com.example.calculator.ui.theme.CalculatorTheme
 import kotlinx.coroutines.launch
 
 @Composable
 fun MenuScreen(
-    viewModel: MenuScreenViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
     onFavoriteBorderClick: () -> Unit,
     onDateClick: () -> Unit,
     onMapClick: () -> Unit,
 ) {
-    val uiState by viewModel.uiState.collectAsState(MenuScreenState())
 
     MenuScreenContent(
         onBackClick = onBackClick,
-        uiState = uiState,
         onFavoriteClick = onFavoriteClick,
         onFavoriteBorderClick = onFavoriteBorderClick,
         onDateClick = onDateClick,
@@ -87,7 +81,6 @@ fun MenuScreen(
 fun MenuScreenContent(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit = {},
-    uiState: MenuScreenState,
     onFavoriteClick: () -> Unit = {},
     onFavoriteBorderClick: () -> Unit = {},
     onDateClick: () -> Unit = {},
@@ -227,7 +220,7 @@ fun MenuScreenContent(
                     onSelectedItem = { selectedProductItem = it },
 
                     )
-                MapScreen()
+
             }
 
         }
@@ -240,7 +233,7 @@ fun MenuScreenContent(
 @Composable
 fun MenuScreenContentPreview() {
     CalculatorTheme {
-        MenuScreenContent(uiState = MenuScreenState())
+        MenuScreenContent()
     }
 }
 
