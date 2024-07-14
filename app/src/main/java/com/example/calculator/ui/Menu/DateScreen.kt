@@ -22,15 +22,17 @@ import java.time.ZoneId
 
 
 @Composable
-fun DateScreen() {
-    DateScreenContent()
+fun DateScreen(
+    onDismissClick: () -> Unit
+) {
+    DateScreenContent(onDismissClick = onDismissClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DateScreenContent(
     modifier: Modifier = Modifier,
-
+onDismissClick:()->Unit={}
 ) {
     val datePickerState = rememberDatePickerState(
         initialDisplayedMonthMillis = System.currentTimeMillis(),
@@ -70,7 +72,7 @@ fun DateScreenContent(
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showDatePicker.value = false }) {
+                TextButton(onClick = onDismissClick ) {
                     Text(text = "Dismiss")
                 }
             }) {
