@@ -93,7 +93,7 @@ class MainActivity : ComponentActivity() {
                         FavoriteScreen (onBackClick = {navController.popBackStack()})
                     }
                     composable("Date Screen"){
-                        DateScreen()
+                        DateScreen(onDismissClick = {navController.popBackStack()})
                     }
                     composable("Map Screen"){
                         MapScreen()
