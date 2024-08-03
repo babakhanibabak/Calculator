@@ -20,9 +20,11 @@ class MapScreenViewModel @Inject constructor() : ViewModel() {
             currentLocation = LatLng(41.015137, 28.979530),
         )
     )
-    val uiState by lazy { _uiState.asStateFlow() }
+    val uiState by lazy {
+changeLocation()
+        _uiState.asStateFlow() }
 
-    fun changeLocation() {
+    private fun changeLocation() {
         _uiState.update {
             it.copy(currentLocation = LatLng(43.015137, 40.979530))
         }
