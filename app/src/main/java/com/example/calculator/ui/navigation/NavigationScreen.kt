@@ -5,17 +5,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.calculator.ui.common.buildTestTag
 import com.example.calculator.ui.theme.CalculatorTheme
 
@@ -47,43 +49,62 @@ fun NavigationScreenContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(48.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .padding(horizontal = 48.dp),
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Toolbox",
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 32.dp)
+        )
         NavigationButton(
             modifier = Modifier.buildTestTag("basic_calculator"),
             text = "Basic Calculator",
-            color = Color.Green,
             onClick = onBasicCalculatorClick
         )
-        Spacer(modifier = Modifier.size(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         NavigationButton(
             modifier = Modifier.buildTestTag("calculator"),
             text = "Calculator",
-            color = Color.Magenta,
             onClick = onCalculatorClick,
         )
-        Spacer(modifier = Modifier.size(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         NavigationButton(
             modifier = Modifier.buildTestTag("counter"),
             text = "Counter",
-            color = Color.Red,
             onClick = onCounterClick,
         )
-        Spacer(modifier = Modifier.size(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         NavigationButton(
             modifier = Modifier.buildTestTag("crypto_list"),
             text = "Crypto Currency",
-            color = Color.LightGray,
             onClick = onCryptoListClick
         )
-        Spacer(modifier = Modifier.size(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         NavigationButton(
             modifier = Modifier.fillMaxWidth(),
             text = "Menu",
-            color = Color.Cyan,
             onClick = onMenuClick
+        )
+        Spacer(modifier = Modifier.height(64.dp))
+        Text(
+            text = "Test Automation Exercise",
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = "https://github.com/NoushinB",
+            fontSize = 10.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+
         )
     }
 }
@@ -93,21 +114,20 @@ fun NavigationScreenContent(
 fun NavigationButton(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color,
     onClick: () -> Unit = {},
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = color
-        )
+        modifier = modifier
+            .fillMaxWidth()
+            .height(64.dp),
+        shape = RoundedCornerShape(8.dp)
     ) {
         Text(text = text)
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun NavigationScreenPreview(modifier: Modifier = Modifier) {
     CalculatorTheme {
