@@ -65,6 +65,7 @@ fun MenuScreen(
     onFavoriteBorderClick: () -> Unit,
     onDateClick: () -> Unit,
     onMapClick: () -> Unit,
+    onEmailClick: () -> Unit,
 ) {
 
     MenuScreenContent(
@@ -72,7 +73,8 @@ fun MenuScreen(
         onFavoriteClick = onFavoriteClick,
         onFavoriteBorderClick = onFavoriteBorderClick,
         onDateClick = onDateClick,
-        onMapClick = onMapClick
+        onMapClick = onMapClick,
+        onEmailClick = onEmailClick
     )
 }
 
@@ -85,6 +87,7 @@ fun MenuScreenContent(
     onFavoriteBorderClick: () -> Unit = {},
     onDateClick: () -> Unit = {},
     onMapClick: () -> Unit = {},
+    onEmailClick: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val bottomScrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -196,7 +199,7 @@ fun MenuScreenContent(
                                 Icon(Icons.Filled.Place, contentDescription = "google map")
                             }
 
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick =  onEmailClick) {
                                 Icon(Icons.Filled.Email, contentDescription = "Favorites")
                             }
                         }
