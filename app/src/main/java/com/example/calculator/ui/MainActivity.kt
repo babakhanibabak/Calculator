@@ -14,6 +14,7 @@ import com.example.calculator.ui.counter.CounterScreen
 import com.example.calculator.ui.cryptoDetail.CoinDetailScreen
 import com.example.calculator.ui.cryptolist.CryptoListScreen
 import com.example.calculator.ui.menu.DateScreen
+import com.example.calculator.ui.menu.GmailScreen
 import com.example.calculator.ui.menu.googleMap.MapScreen
 import com.example.calculator.ui.menu.MenuScreen
 import com.example.calculator.ui.navigation.NavigationScreen
@@ -82,7 +83,8 @@ class MainActivity : ComponentActivity() {
                             onFavoriteClick = { navController.navigate("FavoriteScreen") },
                             onFavoriteBorderClick = {navController.navigate("Favorite Items")},
                             onDateClick = {navController.navigate("Date Screen")},
-                            onMapClick = {navController.navigate("Map Screen")}
+                            onMapClick = {navController.navigate("Map Screen")},
+                            onEmailClick = {navController.navigate("Gmail Screen")}
                         )
 
                     }
@@ -98,8 +100,11 @@ class MainActivity : ComponentActivity() {
                     composable("Map Screen"){
                         MapScreen()
                     }
+                    composable("Gmail Screen"){
+                        GmailScreen(onBackClick = {navController.popBackStack()})
                 }
             }
         }
     }
+}
 }
