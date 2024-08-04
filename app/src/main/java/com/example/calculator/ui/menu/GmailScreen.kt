@@ -29,8 +29,12 @@ import com.example.calculator.ui.theme.CalculatorTheme
 import kotlinx.coroutines.launch
 
 @Composable
-fun GmailScreen() {
-    GmailScreenContent()
+fun GmailScreen(
+    onBackClick: () -> Unit = {},
+) {
+    GmailScreenContent(
+        onBackClick = onBackClick
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
